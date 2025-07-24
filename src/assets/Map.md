@@ -5,7 +5,7 @@
 1 对象遍历
 
 一般来说，普通方式来初始化一个对象，比如`const obj = {};`，`obj`会继承有`Object.prototype`（也可以说是原型）的方法或者属性。如果需要遍历该对象，`for in `方法会访问到原型链所有的可遍历属性，那么其实这种情况，很多时候我们是想避免的，因此我们又需要加一个`hasOwnProperty`来筛选当前的属性是在自己，还是在原型链上的，有一点烦。
-```
+```javascript
 const obj = { a: 1 };
 for (let prop in obj) {
   // to check if in obj itself
@@ -17,14 +17,14 @@ for (let prop in obj) {
 }
 ```
 这也意味着，我们定义了一个空对象，却意外获取到了些不是自己的属性。此时我又有了一个方法，我们可以把原型设置为null,`const obj = Object.create(null);`，哈哈哈反正我能解决这个问题。又或者我可以用es6的`Object.keys()`方法，使用该方法得到的自身的属性组成的数组，而不存在原型链上的属性。
-```
+```javascript
 const obj = { a: 1, b: 2 };
 const keys = Object.keys(obj); // ["a", "b"] compare with the code above
 ```
 2 属性值的重写和改动
 
 对于普通对象，我们可以轻易改动或者删除它的对象，比如往`Object.prototype`添加一些方法，或者重写对象从原型继承来的方法。而且对象的属性不支持非普通数据类型，比如用对象来作为某个对象的属性。
-```
+```javascript
 const obj = {};
 obj.toString = null;
 obj.toString(); // Uncaught TypeError: obj.toString is not a function
@@ -38,7 +38,7 @@ obj[obj] = "Something wild"; // obj["[object Object]"] = "Something wild"
 
 好在我们现在一般开发都可以用工具来把es6编译成es5，来提升对浏览器的适配，同时也给我们赋能，让我们能够用更便利的api来实现我们的功能，比如用Map类来描述字典类型的键值对数据更形象更适配。
 Map原型有set/get/size/has/delete/clear等方法，这里简单介绍下。
-```
+```javascript
 const map = new Map();
 map.set("name", "tomy");
 map.set("age", 30);
