@@ -4,7 +4,7 @@ function Home() {
   return (
     <>
       <h1>Welcome to fengxh blog posts.</h1>
-      <nav style={{ display: 'flex', flexDirection: 'column' }}>
+      <nav style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         <NavLink to="/javascript-map">Map in JavaScript</NavLink>
         <NavLink to="/understand-cors">Understand CORS</NavLink>
         <NavLink to="/websocket-intro">Websocket setup introduction</NavLink>
