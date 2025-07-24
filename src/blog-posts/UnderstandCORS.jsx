@@ -1,5 +1,5 @@
 import PostTemplate from './PostTemplate'
 
-const UnderstandCORS = () => <PostTemplate filename="understand-cors-english.doc" />
+const UnderstandCORS = () => <PostTemplate filename="understanding-cors-english" />
 
 export default UnderstandCORS

@@ -10,8 +10,7 @@ function PostTemplate({ filename }) {
         setContent(res.default)
       })
       .catch((e) => {
-        console.log({ e })
-        setContent(`# ${filename} Not found  ## ${e.message}`)
+        setContent(`# Not found\n\n ## ${e.message}`)
       })
   }, [filename])
 
