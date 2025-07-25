@@ -10,7 +10,7 @@ ___
 我们主要有`server.js`和`index.html`这两个文件，使用node+WebSocket来完成聊天室。`server.js`是负责http和ws服务，`index.js`负责页面的简单渲染和交互逻辑。
 
 1. 首先我们初始化项目并安装依赖
-```
+```shell
 mk websocketDemo
 cd websocketDemo
 touch server.js index.html
@@ -21,7 +21,7 @@ npm install nodemon
 ![project-structure][projectStructureImage]
 
 2. 创建http服务来渲染index页面
-```
+```javascript
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
@@ -37,7 +37,7 @@ const app = http.createServer(function(req, res) {
 }).listen(3000);
 ```
 这里请注意，实际项目不会这样来除处理路由和资源，这里是为了方便演示。现在我们来处理下`index.html`的内容。
-```
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,7 +58,7 @@ const app = http.createServer(function(req, res) {
 3.创建WebSocket服务器
 
 首次我们要创建一个成功的Websocket连接，我们往`server.js`添加以下内容。
-```
+```javascript
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
@@ -79,7 +79,7 @@ socketServer.on('connection', socketClient => {
 4.处理客户端的连接
 
 WebSocket服务已经创建好了，我们接下来处理客户端的连接功能，代码直接放在`index.html`里。
-```
+```html
 <script>
 const ws = new WebSocket('ws://localhost:3030');
 ws.onopen = () => { 
@@ -91,7 +91,7 @@ ws.onopen = () => {
 客户端和服务创建并且成功建立连接，我们现在应该开始做一些互动的功能，比如互相发送和接受对方的消息。我们先从服务端开始。
 
 5.服务端发送和接受消息
-```
+```javascript
 // previous code
 
 const messages = ["Begin!!!"];
@@ -120,7 +120,7 @@ socketServer.on("connection", socketClient => {
 这里主要需要处理的是`message`事件。每次服务器从客户端接收到新消息时，该方法就会触发。我们想要每一次从客户端发出的消息经服务发送到与服务连接的每个客户端，所以我们循环`socketServer.clients`来给每个客户端发送消息，同时也要确保连接是处于开放状态的(OPEN)。
 
 6.客户端发送和接收消息
-```
+```javascript
   <button onclick="fire();">Send</button>
   <div id="messages"></div>
   <script>
