@@ -7,6 +7,10 @@ function PostTemplate({ filename }) {
   const [content, setContent] = useState()
 
   useEffect(() => {
+    if (!filename) {
+      return
+    }
+
     import(`../assets/${filename}.md?raw`)
       .then(res => {
         setContent(res.default)
