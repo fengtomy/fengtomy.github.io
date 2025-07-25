@@ -1,17 +1,16 @@
-import { StrictMode } from 'react'
+import { StrictMode, lazy, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import Home from './Home.jsx'
 import { BrowserRouter, Route, Routes } from 'react-router'
-import { loadable } from './utils.jsx'
 
-const JavaScriptMap = loadable('./blog-posts/JavaScriptMap.jsx')
-const UnderstandCORS = loadable('./blog-posts/UnderstandCORS.jsx')
-const WebsocketIntro = loadable('./blog-posts/WebsocketIntro.jsx')
-const VueCleanCode = loadable('./blog-posts/VueCleanCode.jsx')
-const NewInECMA2025 = loadable('./blog-posts/NewInECMA2025.jsx')
-const NewInECMA2024 = loadable('./blog-posts/NewInECMA2024.jsx')
-const NewInECMA2023 = loadable('./blog-posts/NewInECMA2023.jsx')
+const JavaScriptMap = lazy(() => import('./blog-posts/JavaScriptMap.jsx'))
+const UnderstandCORS = lazy(() => import('./blog-posts/UnderstandCORS.jsx'))
+const WebsocketIntro = lazy(() => import('./blog-posts/WebsocketIntro.jsx'))
+const VueCleanCode = lazy(() => import('./blog-posts/VueCleanCode.jsx'))
+const NewInECMA2025 = lazy(() => import('./blog-posts/NewInECMA2025.jsx'))
+const NewInECMA2024 = lazy(() => import('./blog-posts/NewInECMA2025.jsx'))
+const NewInECMA2023 = lazy(() => import('./blog-posts/NewInECMA2023.jsx'))
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
