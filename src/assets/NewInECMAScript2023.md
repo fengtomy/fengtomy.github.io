@@ -1,5 +1,12 @@
 # What's new in ECMAScript 2023
 
+## Catalog
+
+* [Array find from last](#array-find-from-last)
+* [Hashbang Grammar](#hashbang-grammar)
+* [Symbols as WeakMap keys](#symbols-as-weakmap-keys)
+* [Change Array by Copy](#change-array-by-copy)
+
 ## Array find from last
 
 It adds `findLast` and `findLastIndex` methods on `Array` and `TypedArray` prototype.  

@@ -1,5 +1,16 @@
 # What's new in ECMAScript 2024
 
+## Catalog
+
+* [Well-Formed Unicode Strings](#well-formed-unicode-strings)
+* [RegExp v flag with set notion and properties of string](#regexp-v-flag-with-set-notion-and-properties-of-strings)
+* [Checks against a subset of Unicode string properties](#checks-against-a-subset-of-unicode-string-properties)
+* [In-Place Resizable and Growable ArrayBuffers](#in-place-resizable-and-growable-arraybuffers)
+* [ArrayBuffer transfer](#arraybuffer-transfer)
+* [Array grouping](#array-grouping)
+* [Promise.withResolvers](#promisewithresolvers)
+* Asynchronous atomic wait
+
 ## Well-Formed Unicode Strings
 
 ```javascript
@@ -21,9 +32,7 @@
 '\ud83e'.toWellFormed() // �
 ```
 
-## Asynchronous atomic wait
-
-## RegExp v flag with set notion + properties of strings
+## RegExp v flag with set notion and properties of strings
 
 ```javascript
 // `u` and `v` modes are similar, but they cannot be combined
@@ -139,3 +148,5 @@ eventsAggregator.add("event-three");
 
 // Resolved: [ "event-one", "event-two", "event-three" ]
 ```
+
+## Asynchronous atomic wait

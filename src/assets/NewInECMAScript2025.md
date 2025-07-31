@@ -1,6 +1,22 @@
 # What's new in ECMAScript 2025
 
-## Set methods for JavaScript
+## Catalog
+
+* [Set methods for JavaScript](#set-methods-for-javascript)
+* [Iterator Helper](#iterator-helper)
+* [Promise.try](#promisetry)
+* [Import Attributes and JSON modules](#import-attributes-and-json-modules)
+* Duplicate named capturing groups
+* Regular Expression Pattern Modifiers
+* Float16Array
+* RegExp Escaping
+* References
+
+I will introduce several features that are used frequently IMO.
+
+## Frequently used ones
+
+### Set methods for JavaScript
 
 * intersection
 * union
@@ -26,7 +42,7 @@ setOne.isDisjointFrom(setTwo) // false
 
 [Set MDN doc](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
 
-## Iterator Helper
+### Iterator Helper
 
 * map
 * filter
@@ -60,7 +76,7 @@ iterNumeric.next() // { value: '5', done: false }
 iterNumeric.next() // { value: undefined, done: false }
 ```
 
-## Promise.try()
+### Promise.try()
 
 ```javascript
 const handleAction = (action) => {
@@ -90,7 +106,7 @@ handleAction(() => {
 // done
 ```
 
-## Import Attributes and JSON modules
+### Import Attributes and JSON modules
 
 ```javascript
 import data from "./data.json" with { type: "json" }
@@ -100,14 +116,14 @@ const data = await import("./data.json", { with: { type: "json" } })
 export { data } from "./data.json" with { type: "json" }
 ```
 
-## Duplicate named capturing groups
+## Will not be used often
 
-## Regular Expression Pattern Modifiers
+Below are some features I think will not used too much in daily work. You can explore them in depth by yourself.
 
-## Float16Array
+### Duplicate named capturing groups
 
-## RegExp Escaping
+### Regular Expression Pattern Modifiers
 
-## References
+### Float16Array
 
-https://pawelgrzybek.com/whats-new-in-ecmascript-2025/
+### RegExp Escaping
