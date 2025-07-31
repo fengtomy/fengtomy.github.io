@@ -1,4 +1,4 @@
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown, { MarkdownHooks } from 'react-markdown'
 import { createElement, useEffect, useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
@@ -33,8 +33,12 @@ const renderCode = (props) => {
   )
 }
 
+const placeholder = <p style={{ fontSize: '4em' }}>Loading...</p>
+
+
 function PostTemplate({ filename }) {
   const [content, setContent] = useState()
+  // const contentResolved = use(mdPromise)
 
   useEffect(() => {
     if (!filename) {
@@ -51,12 +55,13 @@ function PostTemplate({ filename }) {
   }, [filename])
 
   if (!content) {
-    return null
+    return placeholder
   }
 
   return (
     <>
-      <ReactMarkdown
+      <MarkdownHooks
+        fallback={placeholder}
         children={content}
         components={{
           h2: renderCustomHead,
