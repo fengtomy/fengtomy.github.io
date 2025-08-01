@@ -7,7 +7,12 @@ const generateHeadingId = (heading) => {
   return heading.toLowerCase().replaceAll(' ', '-').replace(/[.()]/g, '')
 }
 
-const renderCustomHead = (props) => {
+const renderAnchor = (props) => {
+  const { children, href } = props
+  return <a href={href} target="_blank">{children}</a>
+}
+
+const renderHead = (props) => {
   const { children, node } = props
   return createElement(node.tagName, { id: generateHeadingId(children) }, children)
 }
@@ -64,8 +69,9 @@ function PostTemplate({ filename }) {
         fallback={placeholder}
         children={content}
         components={{
-          h2: renderCustomHead,
-          h3: renderCustomHead,
+          a: renderAnchor,
+          h2: renderHead,
+          h3: renderHead,
           code: renderCode,
         }}
       />
