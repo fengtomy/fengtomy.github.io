@@ -4,6 +4,7 @@ import './index.css'
 import Home from './Home.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 
+const AddEventListenerWithRef = lazy(() => import('./blog-posts/AddEventListenerWithRef.jsx'))
 const JavaScriptMap = lazy(() => import('./blog-posts/JavaScriptMap.jsx'))
 const UnderstandCORS = lazy(() => import('./blog-posts/UnderstandCORS.jsx'))
 const WebsocketIntro = lazy(() => import('./blog-posts/WebsocketIntro.jsx'))
@@ -14,6 +15,7 @@ const NewInECMA2023 = lazy(() => import('./blog-posts/NewInECMA2023.jsx'))
 
 const router = createBrowserRouter([
   { path: '/', element: <Home /> },
+  { path: 'add-event-listener-with-ref', element: <AddEventListenerWithRef /> },
   { path: 'javascript-map', element: <JavaScriptMap /> },
   { path: 'understand-cors', element: <UnderstandCORS /> },
   { path: 'websocket-intro', element: <WebsocketIntro /> },

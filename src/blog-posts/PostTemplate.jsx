@@ -105,7 +105,7 @@ function PostTemplate({ filename }) {
     <>
       <div style={{ position: 'absolute', left: 0, top: 0, right: progressBarRight, height: '2px', backgroundColor: 'blue', borderRadius: '2px' }}></div>
       <NavLink to="/"><h2>HOME</h2></NavLink>
-      <section style={{ padding: '0 2em', overflowY: 'auto' }} ref={existedRef}>
+      <section style={{ padding: '0 1em', overflowY: 'auto' }} ref={existedRef}>
         <MarkdownHooks
           fallback={placeholder}
           children={content}
