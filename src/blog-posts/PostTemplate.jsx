@@ -1,7 +1,8 @@
-import ReactMarkdown, { MarkdownHooks } from 'react-markdown'
+import { MarkdownHooks } from 'react-markdown'
 import { createElement, useEffect, useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { NavLink } from 'react-router'
 
 const generateHeadingId = (heading) => {
   return heading.toLowerCase().replaceAll(' ', '-').replace(/[.()]/g, '')
@@ -63,11 +64,17 @@ function PostTemplate({ filename }) {
   }, [filename])
 
   if (!content) {
-    return placeholder
+    return (
+      <>
+        <NavLink to="/"><h2>HOME</h2></NavLink>
+        {placeholder}
+      </>
+    )
   }
 
   return (
     <>
+      <NavLink to="/"><h2>HOME</h2></NavLink>
       <MarkdownHooks
         fallback={placeholder}
         children={content}
