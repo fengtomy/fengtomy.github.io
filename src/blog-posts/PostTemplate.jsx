@@ -1,8 +1,9 @@
 import { MarkdownHooks } from 'react-markdown'
-import { createElement, useEffect, useState } from 'react'
+import { createElement, useEffect, useMemo, useState, useCallback } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { NavLink } from 'react-router'
+import { throttle } from '../utils'
 
 const generateHeadingId = (heading) => {
   return heading.toLowerCase().replaceAll(' ', '-').replace(/[.()]/g, '')
@@ -44,10 +45,20 @@ const renderCode = (props) => {
 
 const placeholder = <p style={{ fontSize: '4em' }}>Loading...</p>
 
-
 function PostTemplate({ filename }) {
   const [content, setContent] = useState()
-  // const contentResolved = use(mdPromise)
+  const [viewProportion, setViewProportion] = useState(0)
+  const [containerDom, setContainerDom] = useState(null)
+
+  const existedRef = useCallback((node) => {
+    if (node !== null) {
+      setContainerDom(node)
+    }
+  }, [])
+
+  const progressBarRight = useMemo(() => {
+    return `calc(100% - ${viewProportion})`
+  }, [viewProportion])
 
   useEffect(() => {
     if (!filename) {
@@ -63,6 +74,24 @@ function PostTemplate({ filename }) {
       })
   }, [filename])
 
+  useEffect(() => {
+    if (containerDom) {
+      const handleScroll = throttle(function() {
+        let proportion = containerDom.scrollTop / (containerDom.scrollHeight - containerDom.offsetHeight)
+        if (proportion >= 1) {
+          proportion = 1
+        }
+        setViewProportion((proportion * 100).toFixed(2) + '%')
+      }, 16)
+
+      containerDom.addEventListener('scroll', handleScroll)
+
+      return () => {
+        containerDom.removeEventListener('scroll', handleScroll)
+      }
+    }
+  }, [containerDom])
+
   if (!content) {
     return (
       <>
@@ -74,17 +103,20 @@ function PostTemplate({ filename }) {
 
   return (
     <>
+      <div style={{ position: 'absolute', left: 0, top: 0, right: progressBarRight, height: '2px', backgroundColor: 'blue', borderRadius: '2px' }}></div>
       <NavLink to="/"><h2>HOME</h2></NavLink>
-      <MarkdownHooks
-        fallback={placeholder}
-        children={content}
-        components={{
-          a: renderAnchor,
-          h2: renderHead,
-          h3: renderHead,
-          code: renderCode,
-        }}
-      />
+      <section style={{ padding: '0 2em', overflowY: 'auto' }} ref={existedRef}>
+        <MarkdownHooks
+          fallback={placeholder}
+          children={content}
+          components={{
+            a: renderAnchor,
+            h2: renderHead,
+            h3: renderHead,
+            code: renderCode,
+          }}
+        />
+      </section>
     </>
   )
 }

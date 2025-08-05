@@ -22,11 +22,17 @@ a:hover {
   color: #705cf1;
 }
 
+html {
+  height: 100%;
+}
+
 body {
-  margin: 0px 32px;
+  /* margin: 0px 32px; */
+  margin: 0;
   display: flex;
-  min-width: 320px;
-  min-height: 100vh;
+  /* min-width: 320px; */
+  /* min-height: 100vh; */
+  height: 100%;
   font-size: 14px;
 }
 
@@ -65,4 +71,11 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+#root {
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
