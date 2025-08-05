@@ -15,7 +15,7 @@ const NewInECMA2023 = lazy(() => import('./blog-posts/NewInECMA2023.jsx'))
 
 const router = createBrowserRouter([
   { path: '/', element: <Home /> },
-  { path: 'add-event-listener-with-ref', element: <AddEventListenerWithRef /> },
+  { path: 'attach-event-listener-with-ref', element: <AddEventListenerWithRef /> },
   { path: 'javascript-map', element: <JavaScriptMap /> },
   { path: 'understand-cors', element: <UnderstandCORS /> },
   { path: 'websocket-intro', element: <WebsocketIntro /> },

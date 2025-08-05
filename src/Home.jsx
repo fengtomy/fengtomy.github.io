@@ -9,7 +9,7 @@ function Home() {
           Blog Posts
         </h2>
         <nav style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'flex-start' }}>
-          <NavLink to="/add-event-listener-with-ref">Add event listener in React, with ref?</NavLink>
+          <NavLink to="/attach-event-listener-with-ref">Attach event listener in React, with ref?</NavLink>
           <NavLink to="/javascript-map">Map in JavaScript</NavLink>
           <NavLink to="/websocket-intro">Websocket setup introduction</NavLink>
           <NavLink to="/vue-clean-code">Clean code in Vue</NavLink>
