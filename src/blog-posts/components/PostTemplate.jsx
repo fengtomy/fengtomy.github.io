@@ -1,7 +1,8 @@
 import { MarkdownHooks } from 'react-markdown'
 import { createElement, useEffect, useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { oneLight, oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { getColorScheme } from '../../utils'
 
 const generateHeadingId = (heading) => {
   return heading.toLowerCase().replaceAll(' ', '-').replace(/[.()]/g, '')
@@ -23,6 +24,7 @@ const renderHead = (props) => {
 const renderCode = (props) => {
   const {children, className, ...rest} = props
   const match = /language-(\w+)/.exec(className || '')
+  const colorScheme = getColorScheme()
   if (match) {
     return (
       <SyntaxHighlighter
@@ -30,7 +32,7 @@ const renderCode = (props) => {
         PreTag="div"
         children={String(children).replace(/\n$/, '')}
         language={match[1]}
-        style={oneLight}
+        style={colorScheme.light ? oneLight : oneDark}
       />
     )
   }

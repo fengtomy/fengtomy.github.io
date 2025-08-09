@@ -12,3 +12,12 @@ export const throttle = function(fn, to) {
     }, to)
   }
 }
+
+export const getColorScheme = () => {
+  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const isLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+  return {
+    light: isLight,
+    dark: isDark,
+  }
+}
