@@ -2,7 +2,6 @@ import { MarkdownHooks } from 'react-markdown'
 import { createElement, useEffect, useMemo, useState, useCallback } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import { NavLink } from 'react-router'
 import { throttle } from '../utils'
 
 const generateHeadingId = (heading) => {
@@ -95,7 +94,6 @@ function PostTemplate({ filename }) {
   if (!content) {
     return (
       <>
-        <NavLink to="/"><h2>HOME</h2></NavLink>
         {placeholder}
       </>
     )
@@ -104,7 +102,6 @@ function PostTemplate({ filename }) {
   return (
     <>
       <div style={{ position: 'absolute', left: 0, top: 0, right: progressBarRight, height: '2px', backgroundColor: 'blue', borderRadius: '2px' }}></div>
-      <NavLink to="/"><h2>HOME</h2></NavLink>
       <section style={{ padding: '0 1em', overflowY: 'auto' }} ref={existedRef}>
         <MarkdownHooks
           fallback={placeholder}

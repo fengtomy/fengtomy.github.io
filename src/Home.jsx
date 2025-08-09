@@ -9,14 +9,14 @@ function Home() {
           Blog Posts
         </h2>
         <nav style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'flex-start' }}>
-          <NavLink to="/attach-event-listener-with-ref">Attach event listener in React, with ref?</NavLink>
-          <NavLink to="/javascript-map">Map in JavaScript</NavLink>
-          <NavLink to="/understand-cors">Understand CORS</NavLink>
-          <NavLink to="/new-in-ecma2025">What's new in ECMA2025</NavLink>
-          <NavLink to="/new-in-ecma2024">What's new in ECMA2024</NavLink>
-          <NavLink to="/new-in-ecma2023">What's new in ECMA2023</NavLink>
-          <NavLink to="/websocket-intro">Websocket setup introduction</NavLink>
-          <NavLink to="/vue-clean-code">Clean code in Vue</NavLink>
+          <NavLink to="/blog-post/attach-event-listener-with-ref">Attach event listener in React, with ref?</NavLink>
+          <NavLink to="/blog-post/javascript-map">Map in JavaScript</NavLink>
+          <NavLink to="/blog-post/understand-cors">Understand CORS</NavLink>
+          <NavLink to="/blog-post/new-in-ecma2025">What's new in ECMA2025</NavLink>
+          <NavLink to="/blog-post/new-in-ecma2024">What's new in ECMA2024</NavLink>
+          <NavLink to="/blog-post/new-in-ecma2023">What's new in ECMA2023</NavLink>
+          <NavLink to="/blog-post/websocket-intro">Websocket setup introduction</NavLink>
+          <NavLink to="/blog-post/vue-clean-code">Clean code in Vue</NavLink>
         </nav>
       </header>
     </>
