@@ -1,4 +1,4 @@
-import PostTemplate from './PostTemplate'
+import PostTemplate from '../components/PostTemplate'
 
 const AddEventListenerWithRef = () => <PostTemplate filename="react-add-event-listener-with-ref" />
 

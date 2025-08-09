@@ -5,14 +5,14 @@ import Home from './Home.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import PostsHome from './blog-posts'
 
-const AddEventListenerWithRef = lazy(() => import('./blog-posts/AddEventListenerWithRef.jsx'))
-const JavaScriptMap = lazy(() => import('./blog-posts/JavaScriptMap.jsx'))
-const UnderstandCORS = lazy(() => import('./blog-posts/UnderstandCORS.jsx'))
-const WebsocketIntro = lazy(() => import('./blog-posts/WebsocketIntro.jsx'))
-const VueCleanCode = lazy(() => import('./blog-posts/VueCleanCode.jsx'))
-const NewInECMA2025 = lazy(() => import('./blog-posts/NewInECMA2025.jsx'))
-const NewInECMA2024 = lazy(() => import('./blog-posts/NewInECMA2024.jsx'))
-const NewInECMA2023 = lazy(() => import('./blog-posts/NewInECMA2023.jsx'))
+const AddEventListenerWithRef = lazy(() => import('./blog-posts/views/AddEventListenerWithRef.jsx'))
+const JavaScriptMap = lazy(() => import('./blog-posts/views/JavaScriptMap.jsx'))
+const UnderstandCORS = lazy(() => import('./blog-posts/views/UnderstandCORS.jsx'))
+const WebsocketIntro = lazy(() => import('./blog-posts/views/WebsocketIntro.jsx'))
+const VueCleanCode = lazy(() => import('./blog-posts/views/VueCleanCode.jsx'))
+const NewInECMA2025 = lazy(() => import('./blog-posts/views/NewInECMA2025.jsx'))
+const NewInECMA2024 = lazy(() => import('./blog-posts/views/NewInECMA2024.jsx'))
+const NewInECMA2023 = lazy(() => import('./blog-posts/views/NewInECMA2023.jsx'))
 
 const router = createBrowserRouter([
   { path: '/', element: <Home /> },

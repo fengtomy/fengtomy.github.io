@@ -1,8 +1,7 @@
 import { MarkdownHooks } from 'react-markdown'
-import { createElement, useEffect, useMemo, useState, useCallback } from 'react'
+import { createElement, useEffect, useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import { throttle } from '../utils'
 
 const generateHeadingId = (heading) => {
   return heading.toLowerCase().replaceAll(' ', '-').replace(/[.()]/g, '')
@@ -46,25 +45,13 @@ const placeholder = <p style={{ fontSize: '4em' }}>Loading...</p>
 
 function PostTemplate({ filename }) {
   const [content, setContent] = useState()
-  const [viewProportion, setViewProportion] = useState(0)
-  const [containerDom, setContainerDom] = useState(null)
-
-  const existedRef = useCallback((node) => {
-    if (node !== null) {
-      setContainerDom(node)
-    }
-  }, [])
-
-  const progressBarRight = useMemo(() => {
-    return `calc(100% - ${viewProportion})`
-  }, [viewProportion])
 
   useEffect(() => {
     if (!filename) {
       return
     }
 
-    import(`../assets/${filename}.md?raw`)
+    import(`../../assets/${filename}.md?raw`)
       .then(res => {
         setContent(res.default)
       })
@@ -72,24 +59,6 @@ function PostTemplate({ filename }) {
         setContent(`# Not found\n\n ## ${e.message}`)
       })
   }, [filename])
-
-  useEffect(() => {
-    if (containerDom) {
-      const handleScroll = throttle(function() {
-        let proportion = containerDom.scrollTop / (containerDom.scrollHeight - containerDom.offsetHeight)
-        if (proportion >= 1) {
-          proportion = 1
-        }
-        setViewProportion((proportion * 100).toFixed(2) + '%')
-      }, 16)
-
-      containerDom.addEventListener('scroll', handleScroll)
-
-      return () => {
-        containerDom.removeEventListener('scroll', handleScroll)
-      }
-    }
-  }, [containerDom])
 
   if (!content) {
     return (
@@ -101,19 +70,16 @@ function PostTemplate({ filename }) {
 
   return (
     <>
-      <div style={{ position: 'absolute', left: 0, top: 0, right: progressBarRight, height: '2px', backgroundColor: 'blue', borderRadius: '2px' }}></div>
-      <section style={{ padding: '0 1em', overflowY: 'auto' }} ref={existedRef}>
-        <MarkdownHooks
-          fallback={placeholder}
-          children={content}
-          components={{
-            a: renderAnchor,
-            h2: renderHead,
-            h3: renderHead,
-            code: renderCode,
-          }}
-        />
-      </section>
+      <MarkdownHooks
+        fallback={placeholder}
+        children={content}
+        components={{
+          a: renderAnchor,
+          h2: renderHead,
+          h3: renderHead,
+          code: renderCode,
+        }}
+      />
     </>
   )
 }

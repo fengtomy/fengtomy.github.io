@@ -1,4 +1,4 @@
-import PostTemplate from './PostTemplate'
+import PostTemplate from '../components/PostTemplate'
 
 const NewInECMA2024 = () => <PostTemplate filename="NewInECMAScript2024" />
 

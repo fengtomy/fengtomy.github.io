@@ -1,4 +1,4 @@
-import PostTemplate from './PostTemplate'
+import PostTemplate from '../components/PostTemplate'
 
 const JavaScriptMap = () => <PostTemplate filename="Map" />
 

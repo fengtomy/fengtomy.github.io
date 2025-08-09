@@ -1,4 +1,4 @@
-import PostTemplate from './PostTemplate'
+import PostTemplate from '../components/PostTemplate'
 
 const WebsocketIntro = () => <PostTemplate filename="WebSocket" />
 
