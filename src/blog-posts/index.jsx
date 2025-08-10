@@ -1,6 +1,7 @@
 import { Outlet, NavLink } from "react-router"
 import { useState, useCallback, useEffect, useMemo } from "react"
 import { throttle } from "../utils"
+import styles from './index.module.css'
 
 const PostHome = () => {
   const [viewProportion, setViewProportion] = useState(0)
@@ -37,9 +38,9 @@ const PostHome = () => {
 
   return (
     <>
-      <div style={{ position: 'absolute', left: 0, top: 0, right: progressBarRight, height: '2px', backgroundColor: 'blue', borderRadius: '2px' }}></div>
+      <div className={styles.progressBar} style={{ right: progressBarRight }}></div>
       <NavLink to="/"><h2>HOME</h2></NavLink>
-      <section style={{ padding: '0 1em', overflowY: 'auto' }} ref={existedRef}>
+      <section className={styles.blogPostWrapper} ref={existedRef}>
         <Outlet />
       </section>
     </>

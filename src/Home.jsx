@@ -1,4 +1,5 @@
 import { NavLink } from "react-router"
+import styles from './home.module.css'
 
 function Home() {
   return (
@@ -8,7 +9,7 @@ function Home() {
         <h2>
           Blog Posts
         </h2>
-        <nav style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'flex-start' }}>
+        <nav className={styles.nav}>
           <NavLink to="/blog-post/attach-event-listener-with-ref">Attach event listener in React, with ref?</NavLink>
           <NavLink to="/blog-post/javascript-map">Map in JavaScript</NavLink>
           <NavLink to="/blog-post/understand-cors">Understand CORS</NavLink>

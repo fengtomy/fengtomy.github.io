@@ -3,6 +3,7 @@ import { createElement, useEffect, useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneLight, oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { getColorScheme } from '../../utils'
+import styles from './PostTemplate.module.css'
 
 const generateHeadingId = (heading) => {
   return heading.toLowerCase().replaceAll(' ', '-').replace(/[.()]/g, '')
@@ -43,7 +44,7 @@ const renderCode = (props) => {
   )
 }
 
-const placeholder = <p style={{ fontSize: '4em' }}>Loading...</p>
+const loadingSection = <p className={styles.placeholder}>Loading...</p>
 
 function PostTemplate({ filename }) {
   const [content, setContent] = useState()
@@ -65,7 +66,7 @@ function PostTemplate({ filename }) {
   if (!content) {
     return (
       <>
-        {placeholder}
+        {loadingSection}
       </>
     )
   }
@@ -73,7 +74,7 @@ function PostTemplate({ filename }) {
   return (
     <>
       <MarkdownHooks
-        fallback={placeholder}
+        fallback={loadingSection}
         children={content}
         components={{
           a: renderAnchor,

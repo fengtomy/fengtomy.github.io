@@ -1,0 +1,13 @@
+.progressBar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 2px;
+  background-color: blue;
+  border-radius: 2px;
+}
+
+.blogPostWrapper {
+  padding: 0 1em;
+  overflow-y: auto;
+}
