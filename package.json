@@ -9,6 +9,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "postbuild": "cp dist/index.html dist/404.html",
+    "addBlog": "node scripts/add-blog-post.js",
     "preview": "vite preview"
   },
   "dependencies": {
