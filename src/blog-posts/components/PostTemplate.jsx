@@ -2,8 +2,8 @@ import { MarkdownHooks } from 'react-markdown'
 import { createElement, useEffect, useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneLight, oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import { getColorScheme } from '../../utils'
 import styles from './PostTemplate.module.css'
+import { useCSSColorScheme } from '../../hooks'
 
 const generateHeadingId = (heading) => {
   return heading.toLowerCase().replaceAll(' ', '-').replace(/[.()]/g, '')
@@ -23,9 +23,8 @@ const renderHead = (props) => {
 }
 
 const renderCode = (props) => {
-  const {children, className, ...rest} = props
+  const {children, className, isLightMode, ...rest} = props
   const match = /language-(\w+)/.exec(className || '')
-  const colorScheme = getColorScheme()
   if (match) {
     return (
       <SyntaxHighlighter
@@ -33,7 +32,7 @@ const renderCode = (props) => {
         PreTag="div"
         children={String(children).replace(/\n$/, '')}
         language={match[1]}
-        style={colorScheme.light ? oneLight : oneDark}
+        style={isLightMode ? oneLight : oneDark}
       />
     )
   }
@@ -48,6 +47,8 @@ const loadingSection = <p className={styles.placeholder}>Loading...</p>
 
 function PostTemplate({ filename }) {
   const [content, setContent] = useState()
+
+  const { light } = useCSSColorScheme()
 
   useEffect(() => {
     if (!filename) {
@@ -80,7 +81,7 @@ function PostTemplate({ filename }) {
           a: renderAnchor,
           h2: renderHead,
           h3: renderHead,
-          code: renderCode,
+          code: (props) => renderCode({ ...props, isLightMode: light }),
         }}
       />
     </>
