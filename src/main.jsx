@@ -14,6 +14,7 @@ const VueCleanCode = lazy(() => import('./blog-posts/views/VueCleanCode.jsx'))
 const NewInECMA2025 = lazy(() => import('./blog-posts/views/NewInECMA2025.jsx'))
 const NewInECMA2024 = lazy(() => import('./blog-posts/views/NewInECMA2024.jsx'))
 const NewInECMA2023 = lazy(() => import('./blog-posts/views/NewInECMA2023.jsx'))
+const Refresh404InSpa = lazy(() => import('./blog-posts/views/Refresh404InSpa.jsx'))
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
         children: [
           { path: 'attach-event-listener-with-ref', element: <AddEventListenerWithRef /> },
           { path: 'javascript-map', element: <JavaScriptMap /> },
+          { path: 'refresh-404-in-spa', element: <Refresh404InSpa /> },
           { path: 'understand-cors', element: <UnderstandCORS /> },
           { path: 'websocket-intro', element: <WebsocketIntro /> },
           { path: 'vue-clean-code', element: <VueCleanCode /> },

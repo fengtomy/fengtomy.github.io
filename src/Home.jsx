@@ -12,6 +12,7 @@ function Home() {
         <nav className={styles.nav}>
           <NavLink to="/blog-post/attach-event-listener-with-ref">Attach event listener in React, with ref?</NavLink>
           <NavLink to="/blog-post/javascript-map">Map in JavaScript</NavLink>
+          <NavLink to="/blog-post/refresh-404-in-spa">404 error on page reload in React and React-Router projects</NavLink>
           <NavLink to="/blog-post/understand-cors">Understand CORS</NavLink>
           <NavLink to="/blog-post/new-in-ecma2025">What's new in ECMA2025</NavLink>
           <NavLink to="/blog-post/new-in-ecma2024">What's new in ECMA2024</NavLink>
