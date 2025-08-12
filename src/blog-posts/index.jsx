@@ -1,4 +1,4 @@
-import { Outlet, NavLink, useLocation } from "react-router"
+import { Outlet, NavLink } from "react-router"
 import { useState, useCallback, useEffect, useMemo } from "react"
 import { throttle } from "../utils"
 import styles from './index.module.css'
@@ -6,8 +6,6 @@ import styles from './index.module.css'
 const PostHome = () => {
   const [viewProportion, setViewProportion] = useState(0)
   const [containerDom, setContainerDom] = useState(null)
-  const location = useLocation()
-  console.log({ location })
 
   const existedRef = useCallback((node) => {
     if (node !== null) {

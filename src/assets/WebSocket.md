@@ -1,4 +1,4 @@
-# WebSocket入门
+# WebSocket Intro
 ##### node+WebSocket制作一个简易的聊天室
 
 摘抄自MDN，[深入了解](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)

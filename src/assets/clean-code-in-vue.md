@@ -1,4 +1,4 @@
-# clean code in daily work
+# Vue clean code in daily work
 
 ## 框架模板，在template里比较长的表达式，尽量写到methods或者computed里
 
