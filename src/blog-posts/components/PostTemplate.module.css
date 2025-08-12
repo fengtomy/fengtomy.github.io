@@ -1,3 +1,9 @@
 .placeholder {
   font-size: 4em;
 }
+
+.h1Wrapper {
+  position: sticky;
+  top: 0.67em;
+  background-color: #fff;
+}

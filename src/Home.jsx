@@ -3,14 +3,14 @@ import styles from './home.module.css'
 
 function Home() {
   return (
-    <>
+    <main className={styles.main}>
       <h1>Welcome to my online space.</h1>
-      <header>
+      <section className={styles.blogPost}>
         <h2>
           Blog Posts
         </h2>
         <nav className={styles.nav}>
-          <NavLink to="/blog-post/attach-event-listener-with-ref">Attach event listener in React, with ref?</NavLink>
+          <NavLink key="/blog-post/attach-event-listener-with-ref" to="/blog-post/attach-event-listener-with-ref">Attach event listener in React, with ref?</NavLink>
           <NavLink to="/blog-post/javascript-map">Map in JavaScript</NavLink>
           <NavLink to="/blog-post/refresh-404-in-spa">404 error on page reload in React and React-Router projects</NavLink>
           <NavLink to="/blog-post/understand-cors">Understand CORS</NavLink>
@@ -20,8 +20,8 @@ function Home() {
           <NavLink to="/blog-post/websocket-intro">Websocket setup introduction</NavLink>
           <NavLink to="/blog-post/vue-clean-code">Clean code in Vue</NavLink>
         </nav>
-      </header>
-    </>
+      </section>
+    </main>
   )
 }
 

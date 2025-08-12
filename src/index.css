@@ -29,7 +29,6 @@ html {
 
 body {
   margin: 0;
-  padding: 0 1em;
   box-sizing: border-box;
   display: flex;
   height: 100%;
@@ -79,5 +78,4 @@ button:focus-visible {
   height: 100%;
   overflow: hidden;
   display: flex;
-  flex-direction: column;
 }

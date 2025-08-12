@@ -1,4 +1,4 @@
-import { Outlet, NavLink } from "react-router"
+import { Outlet, NavLink, useLocation } from "react-router"
 import { useState, useCallback, useEffect, useMemo } from "react"
 import { throttle } from "../utils"
 import styles from './index.module.css'
@@ -6,6 +6,8 @@ import styles from './index.module.css'
 const PostHome = () => {
   const [viewProportion, setViewProportion] = useState(0)
   const [containerDom, setContainerDom] = useState(null)
+  const location = useLocation()
+  console.log({ location })
 
   const existedRef = useCallback((node) => {
     if (node !== null) {
@@ -14,7 +16,7 @@ const PostHome = () => {
   }, [])
 
   const progressBarRight = useMemo(() => {
-    return `calc(100% - ${viewProportion})`
+    return ((1 - viewProportion) * 100).toFixed(2) + '%'
   }, [viewProportion])
 
 
@@ -25,7 +27,7 @@ const PostHome = () => {
         if (proportion >= 1) {
           proportion = 1
         }
-        setViewProportion((proportion * 100).toFixed(2) + '%')
+        setViewProportion(proportion)
       }, 16)
 
       containerDom.addEventListener('scroll', handleScroll)
@@ -39,10 +41,12 @@ const PostHome = () => {
   return (
     <>
       <div className={styles.progressBar} style={{ right: progressBarRight }}></div>
-      <NavLink to="/"><h2>HOME</h2></NavLink>
-      <section className={styles.blogPostWrapper} ref={existedRef}>
+      <nav className={styles.nav}>
+        <NavLink to="/">home</NavLink>
+      </nav>
+      <main className={styles.blogPostWrapper} ref={existedRef}>
         <Outlet />
-      </section>
+      </main>
     </>
   )
 }

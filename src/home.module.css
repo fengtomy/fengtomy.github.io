@@ -1,3 +1,7 @@
+.blogPost {
+  padding: 0 2em;
+}
+
 .nav {
   display: flex;
   flex-direction: column;

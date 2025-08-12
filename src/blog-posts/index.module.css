@@ -7,6 +7,13 @@
   border-radius: 2px;
 }
 
+.nav {
+  padding: 1em 0;
+  background-color: #eeeeee;
+  writing-mode: vertical-lr;
+  text-transform: uppercase;
+}
+
 .blogPostWrapper {
   padding: 0 1em;
   overflow-y: auto;

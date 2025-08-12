@@ -17,6 +17,11 @@ const renderAnchor = (props) => {
   return <a href={href} target="_blank">{children}</a>
 }
 
+const renderH1 = (props) => {
+  const { children, node } = props
+  return createElement(node.tagName, { id: generateHeadingId(children), className: styles.h1Wrapper }, children)
+}
+
 const renderHead = (props) => {
   const { children, node } = props
   return createElement(node.tagName, { id: generateHeadingId(children) }, children)
@@ -79,6 +84,7 @@ function PostTemplate({ filename }) {
         children={content}
         components={{
           a: renderAnchor,
+          h1: renderH1,
           h2: renderHead,
           h3: renderHead,
           code: (props) => renderCode({ ...props, isLightMode: light }),
