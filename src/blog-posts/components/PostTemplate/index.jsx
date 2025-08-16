@@ -1,13 +1,13 @@
 import { MarkdownHooks } from 'react-markdown'
-import { createElement, useEffect, useState } from 'react'
+import { createElement, useContext, useEffect, useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneLight, oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import styles from './PostTemplate.module.css'
-import { useCSSColorScheme } from '../../hooks'
-
-const generateHeadingId = (heading) => {
-  return heading.toLowerCase().replaceAll(' ', '-').replace(/[.()]/g, '')
-}
+import { useCSSColorScheme } from '../../../hooks'
+import { visit } from 'unist-util-visit'
+import { fromMarkdown } from 'mdast-util-from-markdown'
+import { BlogSketchContext } from '../../../contexts'
+import { generateHeadingId } from '../../../utils'
 
 const renderAnchor = (props) => {
   const { children, href } = props
@@ -52,6 +52,21 @@ const loadingSection = <p className={styles.placeholder}>Loading...</p>
 
 function PostTemplate({ filename }) {
   const [content, setContent] = useState()
+  const { setSketch } = useContext(BlogSketchContext)
+
+  useEffect(() => {
+    if (!content) {
+      return
+    }
+    const headers = []
+    const tree = fromMarkdown(content)
+    visit(tree, 'heading', (node) => {
+      if ([2, 3].includes(node.depth)) {
+        headers.push({ type: node.depth, text: node.children[0]?.value })
+      }
+    })
+    setSketch(headers)
+  }, [content, setSketch])
 
   const { light } = useCSSColorScheme()
 
@@ -60,7 +75,7 @@ function PostTemplate({ filename }) {
       return
     }
 
-    import(`../../assets/${filename}.md?raw`)
+    import(`../../../assets/${filename}.md?raw`)
       .then(res => {
         setContent(res.default)
       })

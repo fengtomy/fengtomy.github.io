@@ -1,0 +1,13 @@
+.blogPostSketch {
+  flex: 1;
+  margin: 2em 1em;
+}
+
+.header {
+  font-size: 1.2em;
+}
+
+.lowLevelHeader {
+  margin: 0.4em 1em;
+  font-size: 1em;
+}

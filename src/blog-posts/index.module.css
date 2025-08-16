@@ -5,6 +5,10 @@
   height: 2px;
   background-color: blue;
   border-radius: 2px;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: lightcoral;
+  }
 }
 
 .nav {
@@ -15,6 +19,12 @@
 }
 
 .blogPostWrapper {
+  display: flex;
+  flex: 1;
+}
+
+.blogPostContent {
   padding: 0 1em;
+  flex: 3;
   overflow-y: auto;
 }

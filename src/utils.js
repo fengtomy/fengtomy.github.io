@@ -12,3 +12,8 @@ export const throttle = function(fn, to) {
     }, to)
   }
 }
+
+export const generateHeadingId = (heading) => {
+  return heading.toLowerCase().replaceAll(' ', '-').replace(/[.()]/g, '')
+}
+

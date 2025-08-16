@@ -2,10 +2,15 @@ import { Outlet, NavLink } from "react-router"
 import { useState, useCallback, useEffect, useMemo } from "react"
 import { throttle } from "../utils"
 import styles from './index.module.css'
+import { BlogSketchContext } from "../contexts"
+import Sketch from "./components/Sketch"
 
 const PostHome = () => {
   const [viewProportion, setViewProportion] = useState(0)
   const [containerDom, setContainerDom] = useState(null)
+  const [blogSketch, setBlogSketch] = useState([])
+
+  // console.log('blog sketch', blogSketch)
 
   const existedRef = useCallback((node) => {
     if (node !== null) {
@@ -14,9 +19,8 @@ const PostHome = () => {
   }, [])
 
   const progressBarRight = useMemo(() => {
-    return ((1 - viewProportion) * 100).toFixed(2) + '%'
+    return parseInt((1 - viewProportion) * 100) + '%'
   }, [viewProportion])
-
 
   useEffect(() => {
     if (containerDom) {
@@ -42,9 +46,14 @@ const PostHome = () => {
       <nav className={styles.nav}>
         <NavLink to="/">home</NavLink>
       </nav>
-      <main className={styles.blogPostWrapper} ref={existedRef}>
-        <Outlet />
-      </main>
+      <BlogSketchContext value={{ sketch: blogSketch, setSketch: setBlogSketch }}>
+        <main className={styles.blogPostWrapper}>
+          <section className={styles.blogPostContent} ref={existedRef}>
+            <Outlet />
+          </section>
+          <Sketch sketch={blogSketch} />
+        </main>
+      </BlogSketchContext>
     </>
   )
 }
