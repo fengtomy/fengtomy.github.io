@@ -51,7 +51,7 @@ const PostHome = () => {
           <section className={styles.blogPostContent} ref={existedRef}>
             <Outlet />
           </section>
-          <Sketch sketch={blogSketch} />
+          {blogSketch.length > 0 && <Sketch sketch={blogSketch} />}
         </main>
       </BlogSketchContext>
     </>

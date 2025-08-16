@@ -27,4 +27,5 @@
   padding: 0 1em;
   flex: 3;
   overflow-y: auto;
+  scroll-padding-top: 11em;
 }

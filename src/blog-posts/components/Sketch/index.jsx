@@ -20,7 +20,10 @@ const generateHeader = (header) => {
 const Sketch = ({ sketch }) => {
   return (
     <section className={styles.blogPostSketch}>
-      {sketch.map(generateHeader)}
+      <h3>Catalog</h3>
+      <section className={styles.sketchWrapper}>
+        {sketch.map(generateHeader)}
+      </section>
     </section>
   )
 }
