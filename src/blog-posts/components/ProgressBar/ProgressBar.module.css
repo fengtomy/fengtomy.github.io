@@ -1,0 +1,20 @@
+.progressBar {
+  position: absolute;
+  z-index: 9;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.progressBarInner {
+  position: relative;
+  width: 0;
+  height: 2px;
+  background-color: blue;
+  border-radius: 2px;
+  transition: width linear .2s;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: lightcoral;
+  }
+}

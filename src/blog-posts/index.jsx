@@ -1,16 +1,15 @@
 import { Outlet, NavLink } from "react-router"
-import { useState, useCallback, useEffect, useMemo } from "react"
-import { throttle } from "../utils"
+import { useState, useCallback, useEffect, useRef } from "react"
 import styles from './index.module.css'
 import { BlogSketchContext } from "../contexts"
 import Sketch from "./components/Sketch"
+import ProgressBar from "./components/ProgressBar"
 
 const PostHome = () => {
-  const [viewProportion, setViewProportion] = useState(0)
   const [containerDom, setContainerDom] = useState(null)
   const [blogSketch, setBlogSketch] = useState([])
 
-  // console.log('blog sketch', blogSketch)
+  const progressBarRef = useRef()
 
   const existedRef = useCallback((node) => {
     if (node !== null) {
@@ -18,19 +17,16 @@ const PostHome = () => {
     }
   }, [])
 
-  const progressBarRight = useMemo(() => {
-    return parseInt((1 - viewProportion) * 100) + '%'
-  }, [viewProportion])
-
   useEffect(() => {
     if (containerDom) {
-      const handleScroll = throttle(function() {
-        let proportion = containerDom.scrollTop / (containerDom.scrollHeight - containerDom.offsetHeight)
-        if (proportion >= 1) {
-          proportion = 1
+      const handleScroll = function() {
+        const proportion = containerDom.scrollTop / (containerDom.scrollHeight - containerDom.offsetHeight)
+        if (progressBarRef.current) {
+          window.requestAnimationFrame(() => {
+            progressBarRef.current.style.width = parseInt(proportion * 100) + '%'
+          })
         }
-        setViewProportion(proportion)
-      }, 16)
+      }
 
       containerDom.addEventListener('scroll', handleScroll)
 
@@ -42,7 +38,7 @@ const PostHome = () => {
 
   return (
     <>
-      <div className={styles.progressBar} style={{ right: progressBarRight }}></div>
+      <ProgressBar progressBarRef={progressBarRef} />
       <nav className={styles.nav}>
         <NavLink to="/">home</NavLink>
       </nav>
