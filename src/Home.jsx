@@ -7,8 +7,8 @@ const links = [
   { to: '/blog-post/refresh-404-in-spa', title: '404 error on page reload in React and React-Router projects' },
   { to: '/blog-post/understand-cors', title: 'Understanding cross-origin and CORS' },
   { to: '/blog-post/new-in-ecma2025', title: "What's new in ECMA2025" },
-  { to: '/blog-post/new-in-ecma2024', title: "What's new in ECMA2025" },
-  { to: '/blog-post/new-in-ecma2023', title: "What's new in ECMA2025" },
+  { to: '/blog-post/new-in-ecma2024', title: "What's new in ECMA2024" },
+  { to: '/blog-post/new-in-ecma2023', title: "What's new in ECMA2023" },
   { to: '/blog-post/websocket-intro', title: 'WebSocket Intro' },
   { to: '/blog-post/vue-clean-code', title: 'Vue clean code in daily work' },
 ]
