@@ -1,10 +1,3 @@
-.nav {
-  padding: 1em 0;
-  background-color: #eeeeee;
-  writing-mode: vertical-lr;
-  text-transform: uppercase;
-}
-
 .blogPostWrapper {
   display: flex;
   flex: 1;

@@ -1,17 +1,18 @@
-import { Outlet, NavLink } from "react-router"
+import { Outlet } from "react-router"
 import { useState, useCallback, useEffect, useRef } from "react"
 import styles from './index.module.css'
-import { BlogSketchContext } from "../contexts"
+import { BlogSketchContext, IBlogSketch } from "../contexts"
 import Sketch from "./components/Sketch"
 import ProgressBar from "./components/ProgressBar"
+import NavBar from "./components/NavBar"
 
 const PostHome = () => {
-  const [containerDom, setContainerDom] = useState(null)
-  const [blogSketch, setBlogSketch] = useState([])
+  const [containerDom, setContainerDom] = useState<HTMLElement | null>(null)
+  const [blogSketch, setBlogSketch] = useState<IBlogSketch[]>([])
 
-  const progressBarRef = useRef()
+  const progressBarRef = useRef<HTMLDivElement>(null)
 
-  const existedRef = useCallback((node) => {
+  const existedRef = useCallback((node: HTMLElement) => {
     if (node !== null) {
       setContainerDom(node)
     }
@@ -23,7 +24,7 @@ const PostHome = () => {
         const proportion = containerDom.scrollTop / (containerDom.scrollHeight - containerDom.offsetHeight)
         if (progressBarRef.current) {
           window.requestAnimationFrame(() => {
-            progressBarRef.current.style.width = Math.round(proportion * 100) + '%'
+            progressBarRef.current!.style.width = Math.round(proportion * 100) + '%'
           })
         }
       }
@@ -39,9 +40,7 @@ const PostHome = () => {
   return (
     <>
       <ProgressBar progressBarRef={progressBarRef} />
-      <nav className={styles.nav}>
-        <NavLink to="/">home</NavLink>
-      </nav>
+      <NavBar />
       <BlogSketchContext value={{ sketch: blogSketch, setSketch: setBlogSketch }}>
         <main className={styles.blogPostWrapper}>
           <section className={styles.blogPostContent} ref={existedRef}>

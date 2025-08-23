@@ -6,28 +6,28 @@ import styles from './PostTemplate.module.css'
 import { useCSSColorScheme } from '../../../hooks'
 import { visit } from 'unist-util-visit'
 import { fromMarkdown } from 'mdast-util-from-markdown'
-import { BlogSketchContext } from '../../../contexts'
+import { BlogSketchContext, IBlogSketch } from '../../../contexts'
 import { generateHeadingId } from '../../../utils'
 
-const renderAnchor = (props) => {
+const renderAnchor = (props: { children?: React.ReactNode, href?: string }) => {
   const { children, href } = props
-  if (href.startsWith('#')) {
+  if (href!.startsWith('#')) {
     return <a href={href}>{children}</a>
   }
   return <a href={href} target="_blank">{children}</a>
 }
 
-const renderH1 = (props) => {
+const renderH1 = (props: { children?: React.ReactNode, node?: any }) => {
   const { children, node } = props
-  return createElement(node.tagName, { id: generateHeadingId(children), className: styles.h1Wrapper }, children)
+  return createElement(node!.tagName, { id: generateHeadingId(children as string), className: styles.h1Wrapper }, children)
 }
 
-const renderHead = (props) => {
+const renderHead = (props: { children?: React.ReactNode, node?: any }) => {
   const { children, node } = props
-  return createElement(node.tagName, { id: generateHeadingId(children) }, children)
+  return createElement(node!.tagName, { id: generateHeadingId(children as string) }, children)
 }
 
-const renderCode = (props) => {
+const renderCode = (props: { children?: React.ReactNode, node?: any, isLightMode: boolean, className?: string }) => {
   const {children, className, isLightMode, ...rest} = props
   const match = /language-(\w+)/.exec(className || '')
   if (match) {
@@ -50,19 +50,19 @@ const renderCode = (props) => {
 
 const loadingSection = <p className={styles.placeholder}>Loading...</p>
 
-function PostTemplate({ filename }) {
-  const [content, setContent] = useState()
+function PostTemplate({ filename }: { filename: string }) {
+  const [content, setContent] = useState<string>()
   const { setSketch } = useContext(BlogSketchContext)
 
   useEffect(() => {
     if (!content) {
       return
     }
-    const headers = []
+    const headers: IBlogSketch[] = []
     const tree = fromMarkdown(content)
     visit(tree, 'heading', (node) => {
       if ([2, 3].includes(node.depth)) {
-        headers.push({ type: node.depth, text: node.children[0]?.value })
+        headers.push({ type: node.depth, text: (node.children[0] as any)?.value })
       }
     })
     setSketch(headers)
