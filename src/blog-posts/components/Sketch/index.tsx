@@ -1,7 +1,8 @@
 import styles from './Sketch.module.css'
 import { generateHeadingId } from '../../../utils'
+import { IBlogSketch } from '../../../contexts'
 
-const generateHeader = (header) => {
+const generateHeader = (header: IBlogSketch) => {
   const anchor = '#' + generateHeadingId(header.text)
   if (header.type === 3) {
     return (
@@ -17,7 +18,11 @@ const generateHeader = (header) => {
   )
 }
 
-const Sketch = ({ sketch }) => {
+interface ISketchProps {
+  sketch: IBlogSketch[]
+}
+
+const Sketch = ({ sketch }: ISketchProps) => {
   return (
     <section className={styles.blogPostSketch}>
       <h2>Catalog</h2>

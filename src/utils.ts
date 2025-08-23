@@ -1,5 +1,5 @@
-export const throttle = function(fn, to) {
-  let timer
+export const throttle = function(fn: () => void, to: number) {
+  let timer: number | null
 
   return function throttleInner() {
     if (timer) {
@@ -7,14 +7,14 @@ export const throttle = function(fn, to) {
     }
 
     timer = setTimeout(() => {
-      fn.apply(null, arguments)
+      fn.apply(null, arguments as any)
       timer = null
     }, to)
   }
 }
 
-export const debounce = function(fn, to) {
-  let timer
+export const debounce = function(fn: () => void, to: number) {
+  let timer: number | null
 
   return function debounceInner() {
     if (timer) {
@@ -22,13 +22,13 @@ export const debounce = function(fn, to) {
     }
 
     timer = setTimeout(() => {
-      fn.apply(null, arguments)
+      fn.apply(null, arguments as any)
       timer = null
     }, to)
   }
 }
 
-export const generateHeadingId = (heading) => {
+export const generateHeadingId = (heading: string) => {
   return heading.toLowerCase().replaceAll(' ', '-').replace(/[.()]/g, '')
 }
 

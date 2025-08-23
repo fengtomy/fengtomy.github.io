@@ -4,7 +4,7 @@ export const useCSSColorScheme = () => {
   const [isLightMode, setIsLightMode] = useState( window.matchMedia('(prefers-color-scheme: light)').matches)
 
   useEffect(() => {
-    const handleColorSchemeChange = (event) => {
+    const handleColorSchemeChange = (event: MediaQueryListEvent) => {
       console.log(event)
       setIsLightMode(!!event.matches)
     }

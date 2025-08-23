@@ -1,0 +1,10 @@
+.nav {
+  padding: 1em 0;
+  background-color: #eeeeee;
+  writing-mode: vertical-lr;
+  text-transform: uppercase;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #111111;
+  }
+}
