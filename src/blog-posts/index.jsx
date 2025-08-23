@@ -23,7 +23,7 @@ const PostHome = () => {
         const proportion = containerDom.scrollTop / (containerDom.scrollHeight - containerDom.offsetHeight)
         if (progressBarRef.current) {
           window.requestAnimationFrame(() => {
-            progressBarRef.current.style.width = parseInt(proportion * 100) + '%'
+            progressBarRef.current.style.width = Math.round(proportion * 100) + '%'
           })
         }
       }
