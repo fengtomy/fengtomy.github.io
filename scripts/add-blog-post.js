@@ -13,7 +13,7 @@ main()
 
 function main() {
   try {
-    fs.writeFile(`src/blog-posts/views/${Component}.jsx`, postTemplateLiteral, () => {
+    fs.writeFile(`src/blog-posts/views/${Component}.tsx`, postTemplateLiteral, () => {
       console.log('Successfully create new blog!!!')
     })
   } catch (e) {
