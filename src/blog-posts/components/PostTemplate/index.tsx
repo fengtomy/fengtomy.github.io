@@ -28,7 +28,7 @@ const renderHead = (props: { children?: React.ReactNode, node?: any }) => {
 }
 
 const renderCode = (props: { children?: React.ReactNode, node?: any, isLightMode: boolean, className?: string }) => {
-  const {children, className, isLightMode, ...rest} = props
+  const {children, className, isLightMode, node, ...rest} = props
   const match = /language-(\w+)/.exec(className || '')
   if (match) {
     return (
