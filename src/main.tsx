@@ -15,6 +15,7 @@ const NewInECMA2025 = lazy(() => import('./blog-posts/views/NewInECMA2025'))
 const NewInECMA2024 = lazy(() => import('./blog-posts/views/NewInECMA2024'))
 const NewInECMA2023 = lazy(() => import('./blog-posts/views/NewInECMA2023'))
 const Refresh404InSpa = lazy(() => import('./blog-posts/views/Refresh404InSpa'))
+const IntegrateTypeScriptIntoReactVite = lazy(() => import('./blog-posts/views/IntegrateTypeScriptIntoReactVite'))
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
         path: 'blog-post',
         Component: PostsHome,
         children: [
+          { path: 'integrate-typescript-into-react-vite', element: <IntegrateTypeScriptIntoReactVite /> },
           { path: 'attach-event-listener-with-ref', element: <AddEventListenerWithRef /> },
           { path: 'javascript-map', element: <JavaScriptMap /> },
           { path: 'refresh-404-in-spa', element: <Refresh404InSpa /> },

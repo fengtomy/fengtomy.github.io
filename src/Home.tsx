@@ -2,6 +2,7 @@ import { NavLink } from "react-router"
 import styles from './home.module.css'
 
 const links = [
+  { to: '/blog-post/integrate-typescript-into-react-vite', title: 'Integrate TypeScript into React+Vite project' },
   { to: '/blog-post/attach-event-listener-with-ref', title: 'Attach event listener in React, with ref?' },
   { to: '/blog-post/javascript-map', title: 'Map in ECMA2015' },
   { to: '/blog-post/refresh-404-in-spa', title: '404 error on page reload in React and React-Router projects' },
