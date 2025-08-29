@@ -33,7 +33,6 @@ const renderHead = (props: { children?: React.ReactNode, node?: MarkDownNode }) 
 }
 
 const renderCode = (props: { children?: React.ReactNode, node?: MarkDownNode, isLightMode: boolean, className?: string }) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const {children, className, isLightMode, node, ...rest} = props
   const match = /language-(\w+)/.exec(className || '')
   if (match) {
@@ -47,11 +46,7 @@ const renderCode = (props: { children?: React.ReactNode, node?: MarkDownNode, is
       />
     )
   }
-  return (
-    <code {...rest} className={className}>
-      {children}
-    </code>
-  )
+  return createElement(node!.tagName, { ...rest, className }, children)
 }
 
 const loadingSection = <p className={styles.placeholder}>Loading...</p>
@@ -68,8 +63,7 @@ function PostTemplate({ filename }: { filename: string }) {
     const tree = fromMarkdown(content)
     visit(tree, 'heading', (node) => {
       if ([2, 3].includes(node.depth)) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        headers.push({ type: node.depth, text: (node.children[0] as any)?.value })
+        headers.push({ type: node.depth, text: (node.children[0] as unknown as { value: string })?.value })
       }
     })
     setSketch(headers)
