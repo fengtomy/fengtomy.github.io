@@ -1,7 +1,8 @@
 import { Outlet } from "react-router"
 import { useState, useCallback, useEffect, useRef } from "react"
 import styles from './index.module.css'
-import { BlogSketchContext, IBlogSketch } from "../contexts"
+import type { IBlogSketch } from "../contexts"
+import { BlogSketchContext } from "../contexts"
 import Sketch from "./components/Sketch"
 import ProgressBar from "./components/ProgressBar"
 import NavBar from "./components/NavBar"
