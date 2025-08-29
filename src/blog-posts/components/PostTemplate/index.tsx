@@ -6,7 +6,8 @@ import styles from './PostTemplate.module.css'
 import { useCSSColorScheme } from '../../../hooks'
 import { visit } from 'unist-util-visit'
 import { fromMarkdown } from 'mdast-util-from-markdown'
-import { BlogSketchContext, IBlogSketch } from '../../../contexts'
+import type { IBlogSketch } from '../../../contexts'
+import { BlogSketchContext } from '../../../contexts'
 import { generateHeadingId } from '../../../utils'
 
 const renderAnchor = (props: { children?: React.ReactNode, href?: string }) => {
@@ -17,17 +18,22 @@ const renderAnchor = (props: { children?: React.ReactNode, href?: string }) => {
   return <a href={href} target="_blank">{children}</a>
 }
 
-const renderH1 = (props: { children?: React.ReactNode, node?: any }) => {
+type MarkDownNode = {
+  tagName: string;
+}
+
+const renderH1 = (props: { children?: React.ReactNode, node?: MarkDownNode }) => {
   const { children, node } = props
   return createElement(node!.tagName, { id: generateHeadingId(children as string), className: styles.h1Wrapper }, children)
 }
 
-const renderHead = (props: { children?: React.ReactNode, node?: any }) => {
+const renderHead = (props: { children?: React.ReactNode, node?: MarkDownNode }) => {
   const { children, node } = props
   return createElement(node!.tagName, { id: generateHeadingId(children as string) }, children)
 }
 
-const renderCode = (props: { children?: React.ReactNode, node?: any, isLightMode: boolean, className?: string }) => {
+const renderCode = (props: { children?: React.ReactNode, node?: MarkDownNode, isLightMode: boolean, className?: string }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const {children, className, isLightMode, node, ...rest} = props
   const match = /language-(\w+)/.exec(className || '')
   if (match) {
@@ -62,6 +68,7 @@ function PostTemplate({ filename }: { filename: string }) {
     const tree = fromMarkdown(content)
     visit(tree, 'heading', (node) => {
       if ([2, 3].includes(node.depth)) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         headers.push({ type: node.depth, text: (node.children[0] as any)?.value })
       }
     })

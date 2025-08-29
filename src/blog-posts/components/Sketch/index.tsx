@@ -1,6 +1,6 @@
 import styles from './Sketch.module.css'
 import { generateHeadingId } from '../../../utils'
-import { IBlogSketch } from '../../../contexts'
+import type { IBlogSketch } from '../../../contexts'
 
 const generateHeader = (header: IBlogSketch) => {
   const anchor = '#' + generateHeadingId(header.text)

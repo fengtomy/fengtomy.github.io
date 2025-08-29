@@ -43,7 +43,7 @@ const router = createBrowserRouter([
   }
 ])
 
-const root = document.getElementById('root') as HTMLElement
+const root = document.getElementById('root') as HTMLElement   
 
 createRoot(root).render(
   <StrictMode>
