@@ -12,6 +12,5 @@ export type IBlogSketchContext = {
 
 export const BlogSketchContext = createContext<IBlogSketchContext>({
   sketch: [],
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  setSketch: (newSketch: IBlogSketch[]) => {},
+  setSketch: () => {},
 })
