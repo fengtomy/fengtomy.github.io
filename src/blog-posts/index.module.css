@@ -4,7 +4,8 @@
 }
 
 .blogPostContent {
-  margin: 0 10em;
+  margin: 0 6em;
+  padding: 0 4em;
   flex: 0 1 75%;
   overflow-y: auto;
   scroll-padding-top: 11em;
