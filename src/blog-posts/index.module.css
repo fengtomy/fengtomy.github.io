@@ -4,7 +4,7 @@
 }
 
 .blogPostContentWrapper {
-  flex: 0 1 75%;
+  flex: 75%;
 }
 
 .blogPostContent {
