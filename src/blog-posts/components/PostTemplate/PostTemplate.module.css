@@ -14,3 +14,12 @@
     background-color: #242424;
   }
 }
+
+.inlineCode {
+  margin: 0 0.3em;
+  background-color: #f0f0f0;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #333333;
+  }
+}

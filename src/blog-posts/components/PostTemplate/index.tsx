@@ -46,7 +46,7 @@ const renderCode = (props: { children?: React.ReactNode, node?: MarkDownNode, is
       />
     )
   }
-  return createElement(node!.tagName, { ...rest, className }, children)
+  return createElement(node!.tagName, { ...rest, className: [styles.inlineCode, className].filter(Boolean).join(' ') }, children)
 }
 
 const loadingSection = <p className={styles.placeholder}>Loading...</p>
