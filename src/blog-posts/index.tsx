@@ -44,8 +44,10 @@ const PostHome = () => {
       <NavBar />
       <BlogSketchContext value={{ sketch: blogSketch, setSketch: setBlogSketch }}>
         <main className={styles.blogPostWrapper}>
-          <section className={styles.blogPostContent} ref={existedRef}>
-            <Outlet />
+          <section className={styles.blogPostContentWrapper}>
+            <section className={styles.blogPostContent} ref={existedRef}>
+              <Outlet />
+            </section>
           </section>
           {blogSketch.length > 0 && <Sketch sketch={blogSketch} />}
         </main>

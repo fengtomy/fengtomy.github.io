@@ -3,10 +3,16 @@
   flex: 1;
 }
 
-.blogPostContent {
-  margin: 0 6em;
-  padding: 0 4em;
+.blogPostContentWrapper {
   flex: 0 1 75%;
+}
+
+.blogPostContent {
+  width: 60em;
+  height: 100%;
+  padding: 0 10em;
+  margin: 0 auto;
   overflow-y: auto;
   scroll-padding-top: 11em;
 }
+
