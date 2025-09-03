@@ -5,7 +5,6 @@ export const useCSSColorScheme = () => {
 
   useEffect(() => {
     const handleColorSchemeChange = (event: MediaQueryListEvent) => {
-      console.log(event)
       setIsLightMode(!!event.matches)
     }
 

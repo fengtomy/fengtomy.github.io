@@ -3,12 +3,12 @@ import { createElement, useContext, useEffect, useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneLight, oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import styles from './PostTemplate.module.css'
-import { useCSSColorScheme } from '../../../hooks'
+import { useCSSColorScheme } from '@/hooks'
 import { visit } from 'unist-util-visit'
 import { fromMarkdown } from 'mdast-util-from-markdown'
-import type { IBlogSketch } from '../../../contexts'
-import { BlogSketchContext } from '../../../contexts'
-import { generateHeadingId } from '../../../utils'
+import type { IBlogSketch } from '@/contexts'
+import { BlogSketchContext } from '@/contexts'
+import { generateHeadingId } from '@/utils'
 
 const renderAnchor = (props: { children?: React.ReactNode, href?: string }) => {
   const { children, href } = props

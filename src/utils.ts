@@ -1,5 +1,5 @@
 export const throttle = function(fn: (...args: unknown[]) => void, to: number) {
-  let timer: number | null
+  let timer: NodeJS.Timeout | null
 
   return function throttleInner(...args: unknown[]) {
     if (timer) {
@@ -15,7 +15,7 @@ export const throttle = function(fn: (...args: unknown[]) => void, to: number) {
 }
 
 export const debounce = function(fn: (...args: unknown[]) => void, to: number) {
-  let timer: number | null
+  let timer: NodeJS.Timeout | null
 
   return function debounceInner(...args: unknown[]) {
     if (timer) {
