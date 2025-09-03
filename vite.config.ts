@@ -14,9 +14,16 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          const packageNames = ['/react/', 'react-dom', 'react-markdown', 'react-router', 'react-syntax-highlighter', 'mdast-util-from-markdown', 'unist-util-visit']
+          const packageNames = ['/react/', 'react-dom', 'react-markdown', 'react-router','mdast-util-from-markdown', 'unist-util-visit']
           if (id.includes('node_modules') && packageNames.some(name => id.includes(name))) {
-            return id.toString().split('node_modules/')[1].split('/')[0].toString();
+            // return id.toString().split('node_modules/')[1].split('/')[0].toString();
+            return 'vendor'
+          }
+          if (id.includes('react-syntax-highlighter')) {
+            return 'syntax-highlighter'
+          }
+          if (id.includes('src/contexts') || id.includes('src/utils')) {
+            return 'shared'
           }
         },
       }
