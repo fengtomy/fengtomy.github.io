@@ -13,9 +13,12 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router', 'react-markdown']
-        }
+        manualChunks(id) {
+          const packageNames = ['/react/', 'react-dom', 'react-markdown', 'react-router', 'react-syntax-highlighter', 'mdast-util-from-markdown', 'unist-util-visit']
+          if (id.includes('node_modules') && packageNames.some(name => id.includes(name))) {
+            return id.toString().split('node_modules/')[1].split('/')[0].toString();
+          }
+        },
       }
     }
   }
