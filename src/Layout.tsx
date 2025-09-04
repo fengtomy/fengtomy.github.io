@@ -2,7 +2,9 @@ import { Outlet } from "react-router"
 
 const Layout = () => {
   return (
-    <Outlet />
+    <div className="blog-layout">
+      <Outlet />
+    </div>
   )
 }
 
