@@ -49,6 +49,7 @@ const PostHome = () => {
               <Outlet />
             </section>
           </section>
+          {blogSketch.length}
           {blogSketch.length > 0 && <Sketch sketch={blogSketch} />}
         </main>
       </BlogSketchContext>

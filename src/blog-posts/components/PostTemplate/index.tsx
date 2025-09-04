@@ -1,5 +1,5 @@
 import { MarkdownHooks } from 'react-markdown'
-import { createElement, useContext, useEffect, useState } from 'react'
+import { createElement, useContext, useEffect, useState, useRef } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneLight, oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import styles from './PostTemplate.module.css'
@@ -55,8 +55,10 @@ function PostTemplate({ filename }: { filename: string }) {
   const [content, setContent] = useState<string>()
   const { setSketch } = useContext(BlogSketchContext)
 
+  const importErrorRef = useRef(false)
+
   useEffect(() => {
-    if (!content) {
+    if (!content || importErrorRef.current) {
       return
     }
     const headers: IBlogSketch[] = []
@@ -81,7 +83,12 @@ function PostTemplate({ filename }: { filename: string }) {
         setContent(res.default)
       })
       .catch((e) => {
-        setContent(`# Not found\n\n ## ${e.message}`)
+        importErrorRef.current = true
+        let errorMessage = `## ${e.message}`
+        if (e.message.startsWith('Unknown variable dynamic import')) {
+          errorMessage = `## File: ${filename} is preparing.\n\n ### Please wait a moment.`
+        }
+        setContent(`# Not found\n\n ${errorMessage}`)
       })
   }, [filename])
 
