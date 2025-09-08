@@ -35,6 +35,7 @@ const renderHead = (props: { children?: React.ReactNode, node?: MarkDownNode }) 
 const renderCode = (props: { children?: React.ReactNode, node?: MarkDownNode, isLightMode: boolean, className?: string }) => {
   const {children, className, isLightMode, node, ...rest} = props
   const match = /language-(\w+)/.exec(className || '')
+  console.log({ rest })
   if (match) {
     return (
       <SyntaxHighlighter
