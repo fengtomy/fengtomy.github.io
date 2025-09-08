@@ -1,6 +1,7 @@
 .blogPostWrapper {
   display: flex;
   flex: 1;
+  text-wrap: pretty;
 }
 
 .blogPostContentWrapper {
