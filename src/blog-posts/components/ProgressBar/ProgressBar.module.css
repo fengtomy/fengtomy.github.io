@@ -10,11 +10,7 @@
   position: relative;
   width: 0;
   height: 2px;
-  background-color: blue;
+  background-color: light-dark(blue, lightcoral);
   border-radius: 2px;
   transition: width linear .2s;
-
-  @media (prefers-color-scheme: dark) {
-    background-color: lightcoral;
-  }
 }
