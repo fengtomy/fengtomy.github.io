@@ -11,10 +11,17 @@
 }
 
 .inlineCode {
-  margin: 0 0.3em;
-  padding: 0 0.2em;
-  font-weight: bold;
-  background-color: light-dark(#f0f0f0, #2f2f2f);
+  display: inline-block;
+  margin: 0 0.2em;
+  padding: 0 0.3em;
+  font-weight: 500;
+  background-color: light-dark(#ffffff, #2f2f2f);
+  box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0px 2px 2px rgba(0,0,0,.04), 0 0 0 1px rgb(250,250,250);
+  border-radius: 4px;
+
+  @media (prefers-color-scheme: dark) {
+    box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0px 2px 2px rgba(255,255,255,.04), 0 0 0 1px rgba(250,250,250,.2);
+  }
 }
 
 .textGapPlaceholder {
