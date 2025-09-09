@@ -32,10 +32,14 @@ const renderHead = (props: { children?: React.ReactNode, node?: MarkDownNode }) 
   return createElement(node!.tagName, { id: generateHeadingId(children as string) }, children)
 }
 
+const renderBr = () => {
+  // Add space between text groups within p element.
+  return (<div style={{ margin: '0.5em 0' }} />)
+}
+
 const renderCode = (props: { children?: React.ReactNode, node?: MarkDownNode, isLightMode: boolean, className?: string }) => {
   const {children, className, isLightMode, node, ...rest} = props
   const match = /language-(\w+)/.exec(className || '')
-  console.log({ rest })
   if (match) {
     return (
       <SyntaxHighlighter
@@ -79,7 +83,7 @@ function PostTemplate({ filename }: { filename: string }) {
       return
     }
 
-    import(`../../../assets/${filename}.md?raw`)
+    import(`../../../assets/md/${filename}.md?raw`)
       .then(res => {
         setContent(res.default)
       })
@@ -111,6 +115,7 @@ function PostTemplate({ filename }: { filename: string }) {
           h1: renderH1,
           h2: renderHead,
           h3: renderHead,
+          br: renderBr,
           code: (props) => renderCode({ ...props, isLightMode: light }),
         }}
       />

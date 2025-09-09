@@ -18,6 +18,7 @@ export default defineConfig({
           if (id.includes('node_modules') && criticalPackages.some(name => id.includes(name))) {
             return 'vendor1'
           }
+          // Not much critical in index page.
           const packages = ['react-markdown', 'mdast-util-from-markdown', 'unist-util-visit']
           if (id.includes('node_modules') && packages.some(name => id.includes(name))) {
             return 'vendor2'
