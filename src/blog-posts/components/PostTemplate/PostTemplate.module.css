@@ -16,3 +16,8 @@
   font-weight: bold;
   background-color: light-dark(#f0f0f0, #2f2f2f);
 }
+
+.textGapPlaceholder {
+  margin: 0.5em 0;
+  border-style: hidden;
+}
