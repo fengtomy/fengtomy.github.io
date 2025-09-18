@@ -5,31 +5,26 @@
 
 .sketchWrapper {
   margin-left: 1em;
-  scroll-target-group: auto;
+
+  @supports (scroll-target-group: auto) {
+    scroll-target-group: auto;
+  }
+
+  a {
+    opacity: 0.75;
+
+    &:target-current {
+      opacity: 1;
+    }
+  }
 }
 
 .header {
   font-size: 1.2em;
   margin: 0.4em 0;
-
-  a:target-current {
-    filter: brightness(80%);
-    
-    @media (prefers-color-scheme: dark) {
-      filter: brightness(120%);
-    }
-  }
 }
 
 .lowLevelHeader {
   margin: 0.4em 1em;
   font-size: 1em;
-
-  a:target-current {
-    filter: brightness(80%);
-    
-    @media (prefers-color-scheme: dark) {
-      filter: brightness(120%);
-    }
-  }
 }
