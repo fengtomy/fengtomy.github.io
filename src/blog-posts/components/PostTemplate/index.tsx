@@ -34,7 +34,7 @@ const renderHead = (props: { children?: React.ReactNode, node?: MarkDownNode }) 
 
 const renderBr = () => {
   // Add space between text groups within p element.
-  return (<hr className={styles.textGapPlaceholder} />)
+  return (<span className={styles.textGapPlaceholder} />)
 }
 
 const renderCode = (props: { children?: React.ReactNode, node?: MarkDownNode, isLightMode: boolean, className?: string }) => {
