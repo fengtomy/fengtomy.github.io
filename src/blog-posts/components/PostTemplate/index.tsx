@@ -1,62 +1,19 @@
 import { MarkdownHooks } from 'react-markdown'
-import { createElement, useContext, useEffect, useState, useRef } from 'react'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { oneLight, oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { useContext, useEffect, useState, useRef } from 'react'
 import styles from './PostTemplate.module.css'
 import { useCSSColorScheme } from '@/hooks'
 import { visit } from 'unist-util-visit'
 import { fromMarkdown } from 'mdast-util-from-markdown'
 import type { IBlogSketch } from '@/contexts'
 import { BlogSketchContext } from '@/contexts'
-import { generateHeadingId } from '@/utils'
-
-const renderAnchor = (props: { children?: React.ReactNode, href?: string }) => {
-  const { children, href } = props
-  if (href!.startsWith('#')) {
-    return <a href={href}>{children}</a>
-  }
-  return <a href={href} target="_blank">{children}</a>
-}
-
-type MarkDownNode = {
-  tagName: string;
-}
-
-const renderH1 = (props: { children?: React.ReactNode, node?: MarkDownNode }) => {
-  const { children, node } = props
-  return createElement(node!.tagName, { id: generateHeadingId(children as string), className: styles.h1Wrapper }, children)
-}
-
-const renderHead = (props: { children?: React.ReactNode, node?: MarkDownNode }) => {
-  const { children, node } = props
-  return createElement(node!.tagName, { id: generateHeadingId(children as string) }, children)
-}
-
-const renderBr = () => {
-  // Add space between text groups within p element.
-  return (<span className={styles.textGapPlaceholder} />)
-}
-
-const renderCode = (props: { children?: React.ReactNode, node?: MarkDownNode, isLightMode: boolean, className?: string }) => {
-  const {children, className, isLightMode, node, ...rest} = props
-  const match = /language-(\w+)/.exec(className || '')
-  if (match) {
-    return (
-      <SyntaxHighlighter
-        {...rest}
-        PreTag="div"
-        children={String(children).replace(/\n$/, '')}
-        language={match[1]}
-        style={isLightMode ? oneLight : oneDark}
-      />
-    )
-  }
-  return createElement(node!.tagName, { ...rest, className: [styles.inlineCode, className].filter(Boolean).join(' ') }, children)
-}
+import { renderAnchor, renderH1, renderBr, renderCode, renderHead } from './utils'
 
 const loadingSection = <p className={styles.placeholder}>Loading...</p>
 
-function PostTemplate({ filename }: { filename: string }) {
+interface IPostTemplateProps {
+  filename: string
+}
+function PostTemplate({ filename }: IPostTemplateProps) {
   const [content, setContent] = useState<string>()
   const { setSketch } = useContext(BlogSketchContext)
 

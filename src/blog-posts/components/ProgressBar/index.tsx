@@ -3,7 +3,6 @@ import styles from './ProgressBar.module.css'
 interface IProgressBarProps {
   progressBarRef: React.RefObject<HTMLDivElement | null>;
 }
-
 const ProgressBar = (props: IProgressBarProps) => {
   return (
     <div className={styles.progressBar}>

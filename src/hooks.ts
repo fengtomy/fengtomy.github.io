@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 export const useCSSColorScheme = () => {
-  const [isLightMode, setIsLightMode] = useState( window.matchMedia('(prefers-color-scheme: light)').matches)
+  const [isLightMode, setIsLightMode] = useState(window.matchMedia('(prefers-color-scheme: light)').matches)
 
   useEffect(() => {
     const handleColorSchemeChange = (event: MediaQueryListEvent) => {

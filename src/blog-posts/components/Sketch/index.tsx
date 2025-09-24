@@ -21,7 +21,6 @@ const generateHeader = (header: IBlogSketch) => {
 interface ISketchProps {
   sketch: IBlogSketch[]
 }
-
 const Sketch = ({ sketch }: ISketchProps) => {
   return (
     <section className={styles.blogPostSketch}>
