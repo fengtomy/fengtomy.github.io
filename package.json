@@ -7,6 +7,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "upgrade:major": "node ./scripts/update-version.js --version=major",
+    "upgrade:minor": "node ./scripts/update-version.js --version=minor",
+    "upgrade:patch": "node ./scripts/update-version.js --version=patch",
     "lint": "eslint .",
     "postbuild": "cp dist/index.html dist/404.html",
     "addBlog": "node scripts/add-blog-post.js",
