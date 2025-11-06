@@ -16,9 +16,10 @@ type MarkDownNode = {
   tagName: string;
 }
 
-export const renderH1 = (props: { children?: React.ReactNode, node?: MarkDownNode }) => {
+export const renderH1 = (props: { children?: React.ReactNode, node?: MarkDownNode }, date: string) => {
   const { children, node } = props
-  return createElement(node!.tagName, { id: generateHeadingId(children as string), className: styles.h1Wrapper }, children)
+    const dateEl = createElement('div', { className: styles.date }, date)
+  return createElement(node!.tagName, { id: generateHeadingId(children as string), className: styles.h1Wrapper }, [children, dateEl])
 }
 
 export const renderHead = (props: { children?: React.ReactNode, node?: MarkDownNode }) => {

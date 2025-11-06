@@ -1,7 +1,7 @@
 {
   "name": "vite-project",
   "private": true,
-  "version": "3.0.0",
+  "version": "1.1.0",
   "type": "module",
   "homepage": "https://fengtomy.github.io/",
   "scripts": {
@@ -13,6 +13,7 @@
     "lint": "eslint .",
     "postbuild": "cp dist/index.html dist/404.html",
     "addBlog": "node scripts/add-blog-post.js",
+    "addPostDate": "node scripts/add-publish-date.js",
     "preview": "vite preview"
   },
   "dependencies": {

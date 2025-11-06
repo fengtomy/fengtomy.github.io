@@ -8,6 +8,13 @@
   position: sticky;
   top: 0;
   background-color: light-dark(#fff, #242424);
+
+    .date {
+        position: absolute;
+        right: 0.5em;
+        bottom: 0.5em;
+        font-size: 0.335em;
+    }
 }
 
 .inlineCode {

@@ -13,7 +13,7 @@ function main() {
 
     fs.readFile('package.json', 'utf-8', function(err, res) {
         if (err) {
-            throw new Error('Failed to read package json content', err)
+            throw new Error('Failed to read package json content')
         }
 
         const obj = JSON.parse(res)
@@ -25,7 +25,7 @@ function main() {
         // Temporarily rewrite the whole file.
         fs.writeFile('package.json', JSON.stringify(obj, null, 2), (err) => {
             if (err) {
-                throw new Error('Failed to update package version.', err)
+                throw new Error('Failed to update package version.')
             }
             console.log('Successfully upgrade the package version')
         })

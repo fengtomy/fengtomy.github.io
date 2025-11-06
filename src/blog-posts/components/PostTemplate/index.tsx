@@ -12,8 +12,9 @@ const loadingSection = <p className={styles.placeholder}>Loading...</p>
 
 interface IPostTemplateProps {
   filename: string
+    date: string
 }
-function PostTemplate({ filename }: IPostTemplateProps) {
+function PostTemplate({ filename, date }: IPostTemplateProps) {
   const [content, setContent] = useState<string>()
   const { setSketch } = useContext(BlogSketchContext)
 
@@ -69,7 +70,7 @@ function PostTemplate({ filename }: IPostTemplateProps) {
         children={content}
         components={{
           a: renderAnchor,
-          h1: renderH1,
+          h1: (props) => renderH1(props, date),
           h2: renderHead,
           h3: renderHead,
           br: renderBr,
