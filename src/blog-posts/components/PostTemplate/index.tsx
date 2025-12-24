@@ -12,7 +12,7 @@ const loadingSection = <p className={styles.placeholder}>Loading...</p>
 
 interface IPostTemplateProps {
   filename: string
-    date: string
+  date: string
 }
 function PostTemplate({ filename, date }: IPostTemplateProps) {
   const [content, setContent] = useState<string>()

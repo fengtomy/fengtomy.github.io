@@ -1,14 +1,15 @@
-import { defineConfig } from 'vite'
+import { defineConfig as defineViteConfig, mergeConfig } from 'vite'
+import { defineConfig as defineVitestConfig } from 'vitest/config'
 import path from 'node:path'
 import react from '@vitejs/plugin-react'
 import packageJSON from './package.json'
 
 // https://vite.dev/config/
-export default defineConfig({
+const viteConfig = defineViteConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': path.resolve(import.meta.dirname, './src'),
     }
   },
   build: {
@@ -36,6 +37,16 @@ export default defineConfig({
     }
   }
 })
+
+const vitestConfig = defineVitestConfig({
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: "./src/tests/setup.ts"
+  },
+})
+
+export default mergeConfig(viteConfig, vitestConfig)
 
 function generateChunkName(name: string) {
   return `${name}-${packageJSON.version}`
