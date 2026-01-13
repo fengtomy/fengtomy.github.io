@@ -1,12 +1,12 @@
 import { MarkdownHooks } from 'react-markdown'
-import { useContext, useEffect, useState, useRef } from 'react'
+import { useContext, useEffect, useState, useRef, useSyncExternalStore } from 'react'
 import styles from './PostTemplate.module.css'
-import { useCSSColorScheme } from '@/hooks'
+// import { useCSSColorScheme } from '@/hooks'
 import { visit } from 'unist-util-visit'
 import { fromMarkdown } from 'mdast-util-from-markdown'
 import type { IBlogSketch } from '@/contexts'
 import { BlogSketchContext } from '@/contexts'
-import { renderAnchor, renderH1, renderBr, renderCode, renderHead } from './utils'
+import { renderAnchor, renderH1, renderBr, renderCode, renderHead, colorSchemeStore } from './utils'
 
 const loadingSection = <p className={styles.placeholder}>Loading...</p>
 
@@ -19,7 +19,6 @@ function PostTemplate({ filename, date }: IPostTemplateProps) {
   const { setSketch } = useContext(BlogSketchContext)
 
   const importErrorRef = useRef(false)
-
   useEffect(() => {
     if (!content || importErrorRef.current) {
       return
@@ -34,7 +33,7 @@ function PostTemplate({ filename, date }: IPostTemplateProps) {
     setSketch(headers)
   }, [content, setSketch])
 
-  const { light } = useCSSColorScheme()
+  const isLightColorScheme = useSyncExternalStore(colorSchemeStore.subscribe, colorSchemeStore.getSnapshot, colorSchemeStore.getServerSnapshot)
 
   useEffect(() => {
     if (!filename) {
@@ -74,7 +73,7 @@ function PostTemplate({ filename, date }: IPostTemplateProps) {
           h2: renderHead,
           h3: renderHead,
           br: renderBr,
-          code: (props) => renderCode({ ...props, isLightMode: light }),
+          code: (props) => renderCode({ ...props, isLightMode: isLightColorScheme }),
         }}
       />
     </>

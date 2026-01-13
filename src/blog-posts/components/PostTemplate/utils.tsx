@@ -18,7 +18,7 @@ type MarkDownNode = {
 
 export const renderH1 = (props: { children?: React.ReactNode, node?: MarkDownNode }, date: string) => {
   const { children, node } = props
-  const dateEl = createElement('div', { className: styles.date }, date)
+  const dateEl = createElement('div', { className: styles.date, key: 'custom-date' }, date)
   return createElement(node!.tagName, { id: generateHeadingId(children as string), className: styles.h1Wrapper }, [children, dateEl])
 }
 
@@ -47,4 +47,17 @@ export const renderCode = (props: { children?: React.ReactNode, node?: MarkDownN
     )
   }
   return createElement(node!.tagName, { ...rest, className: [styles.inlineCode, className].filter(Boolean).join(' ') }, children)
+}
+
+export const colorSchemeStore = {
+  subscribe(onStoreChange: () => void) {
+    const lightModeMediaQuery = window.matchMedia('(prefers-color-scheme: light)')
+    lightModeMediaQuery.addEventListener('change', onStoreChange)
+
+    return () => {
+      lightModeMediaQuery.removeEventListener('change', onStoreChange)
+    }
+  },
+  getSnapshot: () => !!window.matchMedia('(prefers-color-scheme: light)').matches,
+  getServerSnapshot: () => false,
 }
