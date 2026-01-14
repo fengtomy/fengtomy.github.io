@@ -1,6 +1,6 @@
 import { generateHeadingId } from "@/utils"
 import { colorSchemeStore, renderAnchor, renderBr, renderCode, renderH1, renderHead } from "./utils"
-import { render, screen, waitFor } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 
 describe("PostTemplate utils", () => {
     it("renderAnchor with local href", () => {
