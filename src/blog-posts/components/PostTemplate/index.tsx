@@ -36,10 +36,6 @@ function PostTemplate({ filename, date }: IPostTemplateProps) {
   const isLightColorScheme = useSyncExternalStore(colorSchemeStore.subscribe, colorSchemeStore.getSnapshot, colorSchemeStore.getServerSnapshot)
 
   useEffect(() => {
-    if (!filename) {
-      return
-    }
-
     import(`../../../assets/md/${filename}.md?raw`)
       .then(res => {
         setContent(res.default)
