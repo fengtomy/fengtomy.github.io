@@ -1,10 +1,12 @@
-import { StrictMode, lazy } from 'react'
-import { createRoot } from 'react-dom/client'
+// import { StrictMode, lazy } from 'react'
+import { lazy } from 'react'
+// import { createRoot } from 'react-dom/client'
 import './index.css'
 import Home from './Home.jsx'
-import { createBrowserRouter, RouterProvider } from 'react-router'
+// import { createBrowserRouter, RouterProvider } from 'react-router'
 import PostsHome from './blog-posts'
 import Layout from './Layout.jsx'
+import { ViteReactSSG } from 'vite-react-ssg'
 
 const AddEventListenerWithRef = lazy(() => import('./blog-posts/views/AddEventListenerWithRef'))
 const JavaScriptMap = lazy(() => import('./blog-posts/views/JavaScriptMap'))
@@ -17,12 +19,12 @@ const NewInECMA2023 = lazy(() => import('./blog-posts/views/NewInECMA2023'))
 const Refresh404InSpa = lazy(() => import('./blog-posts/views/Refresh404InSpa'))
 const IntegrateTypeScriptIntoReactVite = lazy(() => import('./blog-posts/views/IntegrateTypeScriptIntoReactVite'))
 
-const router = createBrowserRouter([
+const router = ([
   {
     path: '/',
     element: <Layout />,
     children: [
-      { index: true, Component: Home },
+      { index: true, element: <Home /> },
       {
         path: 'blog-post',
         Component: PostsHome,
@@ -43,10 +45,15 @@ const router = createBrowserRouter([
   }
 ])
 
-const root = document.getElementById('root') as HTMLElement   
+// const root = document.getElementById('root') as HTMLElement   
 
-createRoot(root).render(
-  <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>
+// createRoot(root).render(
+//   <StrictMode>
+//     <RouterProvider router={router} />
+//   </StrictMode>
+// )
+
+export const createRoot = ViteReactSSG(
+  { routes: router },
+  () => { },
 )

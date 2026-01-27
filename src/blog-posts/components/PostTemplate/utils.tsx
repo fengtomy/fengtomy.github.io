@@ -2,7 +2,7 @@ import { generateHeadingId } from '@/utils'
 import styles from './PostTemplate.module.css'
 import { createElement } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { oneLight, oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { oneLight, oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 
 export const renderAnchor = (props: { children?: React.ReactNode, href?: string }) => {
   const { children, href } = props
