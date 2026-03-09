@@ -42,16 +42,16 @@ const PostHome = () => {
     <>
       <ProgressBar progressBarRef={progressBarRef} />
       <NavBar />
-      <BlogSketchContext value={{ sketch: blogSketch, setSketch: setBlogSketch }}>
-        <main className={styles.blogPostWrapper}>
-          <section className={styles.blogPostContentWrapper}>
-            <section className={styles.blogPostContent} ref={existedRef}>
+      <main className={styles.blogPostWrapper}>
+        <section className={styles.blogPostContentWrapper}>
+          <section className={styles.blogPostContent} ref={existedRef}>
+            <BlogSketchContext value={{ sketch: blogSketch, setSketch: setBlogSketch }}>
               <Outlet />
-            </section>
+            </BlogSketchContext>
           </section>
-          {blogSketch.length > 0 && <Sketch sketch={blogSketch} />}
-        </main>
-      </BlogSketchContext>
+        </section>
+        {blogSketch.length > 0 && <Sketch sketch={blogSketch} />}
+      </main>
     </>
   )
 }

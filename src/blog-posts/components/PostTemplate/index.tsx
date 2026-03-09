@@ -1,24 +1,24 @@
 import { MarkdownHooks } from 'react-markdown'
-import { useContext, useEffect, useState, useRef } from 'react'
+import { useContext, useEffect, useState, useRef, useSyncExternalStore } from 'react'
 import styles from './PostTemplate.module.css'
-import { useCSSColorScheme } from '@/hooks'
+// import { useCSSColorScheme } from '@/hooks'
 import { visit } from 'unist-util-visit'
 import { fromMarkdown } from 'mdast-util-from-markdown'
 import type { IBlogSketch } from '@/contexts'
 import { BlogSketchContext } from '@/contexts'
-import { renderAnchor, renderH1, renderBr, renderCode, renderHead } from './utils'
+import { renderAnchor, renderH1, renderBr, renderCode, renderHead, colorSchemeStore } from './utils'
 
 const loadingSection = <p className={styles.placeholder}>Loading...</p>
 
 interface IPostTemplateProps {
   filename: string
+  date: string
 }
-function PostTemplate({ filename }: IPostTemplateProps) {
+function PostTemplate({ filename, date }: IPostTemplateProps) {
   const [content, setContent] = useState<string>()
   const { setSketch } = useContext(BlogSketchContext)
 
   const importErrorRef = useRef(false)
-
   useEffect(() => {
     if (!content || importErrorRef.current) {
       return
@@ -33,13 +33,9 @@ function PostTemplate({ filename }: IPostTemplateProps) {
     setSketch(headers)
   }, [content, setSketch])
 
-  const { light } = useCSSColorScheme()
+  const isLightColorScheme = useSyncExternalStore(colorSchemeStore.subscribe, colorSchemeStore.getSnapshot, colorSchemeStore.getServerSnapshot)
 
   useEffect(() => {
-    if (!filename) {
-      return
-    }
-
     import(`../../../assets/md/${filename}.md?raw`)
       .then(res => {
         setContent(res.default)
@@ -69,11 +65,11 @@ function PostTemplate({ filename }: IPostTemplateProps) {
         children={content}
         components={{
           a: renderAnchor,
-          h1: renderH1,
+          h1: (props) => renderH1(props, date),
           h2: renderHead,
           h3: renderHead,
           br: renderBr,
-          code: (props) => renderCode({ ...props, isLightMode: light }),
+          code: (props) => renderCode({ ...props, isLightMode: isLightColorScheme }),
         }}
       />
     </>
