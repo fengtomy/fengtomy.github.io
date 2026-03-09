@@ -42,6 +42,16 @@ h1 {
   line-height: 1.1;
 }
 
+h2 {
+  font-size: 1.8em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+}
+
+h3 {
+  font-size: 1.404em;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;

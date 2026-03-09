@@ -15,5 +15,11 @@
   margin: 0 auto;
   overflow-y: auto;
   scroll-padding-top: 11em;
+
+  p {
+    font-size: 1.2em;
+    margin-block-start: 1.2em;
+    margin-block-end: 1.2em;
+  }
 }
 
