@@ -1,10 +1,10 @@
 import { StrictMode, lazy } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import Home from './Home.jsx'
+import Home from './Home'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import PostsHome from './blog-posts'
-import Layout from './Layout.jsx'
+import Layout from './Layout'
 
 const AddEventListenerWithRef = lazy(() => import('./blog-posts/views/AddEventListenerWithRef'))
 const JavaScriptMap = lazy(() => import('./blog-posts/views/JavaScriptMap'))
