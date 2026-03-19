@@ -21,10 +21,11 @@ const PostHome = () => {
 
   useEffect(() => {
     if (containerDom) {
+      let req: number
       const handleScroll = function() {
         const proportion = containerDom.scrollTop / (containerDom.scrollHeight - containerDom.offsetHeight)
         if (progressBarRef.current) {
-          window.requestAnimationFrame(() => {
+          req = window.requestAnimationFrame(() => {
             progressBarRef.current!.style.width = Math.round(proportion * 100) + '%'
           })
         }
@@ -34,6 +35,9 @@ const PostHome = () => {
 
       return () => {
         containerDom.removeEventListener('scroll', handleScroll)
+        if (req) {
+          cancelAnimationFrame(req)
+        }
       }
     }
   }, [containerDom])
