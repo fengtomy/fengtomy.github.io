@@ -1,8 +1,7 @@
-import { StrictMode, lazy } from 'react'
-import { createRoot } from 'react-dom/client'
+import { lazy } from 'react'
 import './index.css'
 import Home from './Home'
-import { createBrowserRouter, RouterProvider } from 'react-router'
+import { RouterProvider, createMemoryRouter, createBrowserRouter } from 'react-router'
 import PostsHome from './blog-posts'
 import Layout from './Layout'
 
@@ -17,36 +16,36 @@ const NewInECMA2023 = lazy(() => import('./blog-posts/views/NewInECMA2023'))
 const Refresh404InSpa = lazy(() => import('./blog-posts/views/Refresh404InSpa'))
 const IntegrateTypeScriptIntoReactVite = lazy(() => import('./blog-posts/views/IntegrateTypeScriptIntoReactVite'))
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Layout />,
-    children: [
-      { index: true, Component: Home },
-      {
-        path: 'blog-post',
-        Component: PostsHome,
-        children: [
-          { path: 'integrate-typescript-into-react-vite', element: <IntegrateTypeScriptIntoReactVite /> },
-          { path: 'attach-event-listener-with-ref', element: <AddEventListenerWithRef /> },
-          { path: 'javascript-map', element: <JavaScriptMap /> },
-          { path: 'refresh-404-in-spa', element: <Refresh404InSpa /> },
-          { path: 'understand-cors', element: <UnderstandCORS /> },
-          { path: 'websocket-intro', element: <WebsocketIntro /> },
-          { path: 'vue-clean-code', element: <VueCleanCode /> },
-          { path: 'new-in-ecma2025', element: <NewInECMA2025 /> },
-          { path: 'new-in-ecma2024', element: <NewInECMA2024 /> },
-          { path: 'new-in-ecma2023', element: <NewInECMA2023 /> },
-        ]
-      }
-    ]
-  }
-])
 
-const root = document.getElementById('root') as HTMLElement   
+export const App = () => {
+  const createRouter = typeof window !== 'undefined' ? createBrowserRouter : createMemoryRouter
+  const router = createRouter([
+    {
+      path: '/',
+      element: <Layout />,
+      children: [
+        { index: true, Component: Home },
+        {
+          path: 'blog-post',
+          Component: PostsHome,
+          children: [
+            { path: 'integrate-typescript-into-react-vite', element: <IntegrateTypeScriptIntoReactVite /> },
+            { path: 'attach-event-listener-with-ref', element: <AddEventListenerWithRef /> },
+            { path: 'javascript-map', element: <JavaScriptMap /> },
+            { path: 'refresh-404-in-spa', element: <Refresh404InSpa /> },
+            { path: 'understand-cors', element: <UnderstandCORS /> },
+            { path: 'websocket-intro', element: <WebsocketIntro /> },
+            { path: 'vue-clean-code', element: <VueCleanCode /> },
+            { path: 'new-in-ecma2025', element: <NewInECMA2025 /> },
+            { path: 'new-in-ecma2024', element: <NewInECMA2024 /> },
+            { path: 'new-in-ecma2023', element: <NewInECMA2023 /> },
+          ]
+        }
+      ]
+    }
+  ])
 
-createRoot(root).render(
-  <StrictMode>
+  return (
     <RouterProvider router={router} />
-  </StrictMode>
-)
+  )
+}
