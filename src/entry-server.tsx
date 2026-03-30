@@ -1,13 +1,15 @@
 import { renderToString } from "react-dom/server";
 import { App } from "./main";
 import { StrictMode } from "react";
+import { StaticRouter } from "react-router";
 
-export async function render(_url: string) {
+export async function render(url: string) {
     const html = renderToString(
         <StrictMode>
-            <App />
+            <StaticRouter location={url}>
+                <App />
+            </StaticRouter>
         </StrictMode>
     )
-    console.log('html', html)
     return { html }
 }

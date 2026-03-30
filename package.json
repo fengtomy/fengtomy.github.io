@@ -18,7 +18,7 @@
     "postbuild": "cp dist/index.html dist/404.html",
     "addBlog": "node scripts/add-blog-post.js",
     "addPostDate": "node scripts/add-publish-date.js",
-    "generate": "vite build --ssrManifest .vite/ssr-manifest.json --outDir dist/static && npm run build:server && node prerender",
+    "generate": "tsc -b && vite build --ssrManifest .vite/ssr-manifest.json --outDir dist/static && npm run build:server && node prerender",
     "preview": "vite preview"
   },
   "dependencies": {

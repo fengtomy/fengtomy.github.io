@@ -1,5 +1,4 @@
-// import { MarkdownHooks } from 'react-markdown'
-import ReactMarkdown from 'react-markdown'
+import { MarkdownHooks } from 'react-markdown'
 import { useContext, useEffect, useState, useRef, useSyncExternalStore } from 'react'
 import styles from './PostTemplate.module.css'
 // import { useCSSColorScheme } from '@/hooks'
@@ -8,6 +7,8 @@ import { fromMarkdown } from 'mdast-util-from-markdown'
 import type { IBlogSketch } from '@/contexts'
 import { BlogSketchContext } from '@/contexts'
 import { renderAnchor, renderH1, renderBr, renderCode, renderHead, colorSchemeStore } from './utils'
+
+const loadingSection = <p className={styles.placeholder}>Loading...</p>
 
 interface IPostTemplateProps {
   filename: string
@@ -49,9 +50,18 @@ function PostTemplate({ filename, date }: IPostTemplateProps) {
       })
   }, [filename])
 
+  // if (!content) {
+  //   return (
+  //     <>
+  //       {loadingSection}
+  //     </>
+  //   )
+  // }
+
   return (
     <>
-      <ReactMarkdown
+      <MarkdownHooks
+        fallback={loadingSection}
         children={content}
         components={{
           a: renderAnchor,

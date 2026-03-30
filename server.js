@@ -34,7 +34,6 @@ app.use('*all', async (req, res) => {
         
         let template
         let render
-        console.log('is production', isProduction)
         if (!isProduction) {
             template = await fs.readFile('./index.html', 'utf-8')
             template = await vite.transformIndexHtml(url, template)
